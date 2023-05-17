@@ -44,9 +44,10 @@ tagTypes: ['Properties', 'Users', 'Agents', 'AgentReset', 'Companies', 'Mortgage
   endpoints: (builder) => ({
      getUsers: builder.query<UserModel[], void>({
       query: ()  => '/users',
-        providesTags: (result: { id: any; }[]) => result ? [...result.map(({ id }) => ({ type: 'Users' as const, id })),
-                { type: 'Users', id: 'USER' },
-              ] : [{ type: 'Users', id: 'USER' }],
+        // providesTags: (result: { id: any; }[]) => result ? [...result.map(({ id }) => ({ type: 'Users' as const, id })),
+        //         { type: 'Users', id: 'USER' },
+        //       ] : [{ type: 'Users', id: 'USER' }],
+        providesTags: (result: any, error: any, id: any) =>  [{ type:'Users', id: 'USER' }],  
     }),
   
     getUser: builder.query<UserModel, any>({
@@ -425,9 +426,10 @@ tagTypes: ['Properties', 'Users', 'Agents', 'AgentReset', 'Companies', 'Mortgage
 
                getProperties: builder.query<PropertyModel[], void>({
                 query: ()  => '/properties',
-                  providesTags: (result: { id: any; }[]) => result ? [...result.map(({ id }) => ({ type: 'Properties' as const, id: 'PROP' })),
-                          { type: 'Properties', id: 'PROP' },
-                        ] : [{ type: 'Properties', id: 'PROP' }],
+                  // providesTags: (result: { id: any; }[]) => result ? [...result.map(({ id }) => ({ type: 'Properties' as const, id: 'PROP' })),
+                  //         { type: 'Properties', id: 'PROP' },
+                  //       ] : [{ type: 'Properties', id: 'PROP' }],
+                  providesTags: (result: any, error: any, id: any) =>  [{ type: 'Properties', id: 'PROP' }],  
               }),
               getProperty: builder.query<PropertyModel, any>({
                 query: (id: any) => `/properties/${id}`,
@@ -529,9 +531,10 @@ tagTypes: ['Properties', 'Users', 'Agents', 'AgentReset', 'Companies', 'Mortgage
 
                   getMortgages: builder.query<MortgageModel[], void>({
                     query: ()  => '/mortgages',
-                      providesTags: (result: { id: any; }[]) => result ? [...result.map(({ id }) => ({ type: 'Mortgage' as const, id })),
-                              { type: 'Mortgage', id: 'MORT' },
-                            ] : [{ type: 'Mortgage', id: 'MORT' }],
+                      // providesTags: (result: { id: any; }[]) => result ? [...result.map(({ id }) => ({ type: 'Mortgage' as const, id })),
+                      //         { type: 'Mortgage', id: 'MORT' },
+                      //       ] : [{ type: 'Mortgage', id: 'MORT' }],
+                      providesTags: (result: any, error: any, id: any) =>  [{ type: 'Mortgage', id: 'MORT'  }],  
                   }), 
                   getMortgage: builder.query<MortgageModel, any>({
                     query: (id: any) => `/mortgages/${id}`,
