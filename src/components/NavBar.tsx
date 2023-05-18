@@ -482,8 +482,8 @@ const handleUpload = async (e: any) => {
    const formData = new FormData();
    formData.append('file', file);
    {/* @ts-ignore:next-line */}
-   formData.append(process.env.REACT_APP_CLOUD_PRESET, 'userProfileImg');
-  await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+   formData.append('upload_preset', 'userProfileImg');
+  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
    method: 'POST',
    body: formData,
  })
@@ -638,7 +638,7 @@ const handleCloseUserMenu = () => {
         <Div id='signinDiv'>Log in with google</Div>
         <GoogleContainer>
            {/* @ts-ignore:next-line */}
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOFLE_OAUTH}>
+        <GoogleOAuthProvider clientId="771408852902-tgtge00svjkijjre2e3279b2pt7r2nfa.apps.googleusercontent.com">
           <GoogleLogin
           onSuccess={googleSuccess}
           onError={googleFailure}

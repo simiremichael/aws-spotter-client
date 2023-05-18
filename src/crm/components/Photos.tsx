@@ -192,8 +192,8 @@ const handleBackButton = () => {
  for ( const file of files) {
      formData.append('file', file);
       {/* @ts-ignore:next-line */}
-     formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-    await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+     formData.append('upload_preset', 'propertyImg');
+    await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
      method: 'POST',
      body: formData,
    })
@@ -212,8 +212,8 @@ const handleBackButton = () => {
    for ( const file of files) {
     formData.append('file', file);
      {/* @ts-ignore:next-line */}
-     formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-    await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+     formData.append('upload_preset', 'propertyImg');
+     await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
     method: 'POST',
     body: formData,
   })
@@ -232,8 +232,8 @@ const handleUpload3 = async (e: any) => {
   for ( const file of files) {
     formData.append('file', file);
      {/* @ts-ignore:next-line */}
-     formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-    await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+     formData.append('upload_preset', 'propertyImg');
+     await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
     method: 'POST',
     body: formData,
   })
@@ -252,8 +252,8 @@ const handleUpload4 = async (e: any) => {
   for ( const file of files) {
    formData.append('file', file);
     {/* @ts-ignore:next-line */}
-    formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-    await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+    formData.append('upload_preset', 'propertyImg');
+    await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
    method: 'POST',
    body: formData,
  })
@@ -272,8 +272,8 @@ const handleUpload5 = async (e: any) => {
  for ( const file of files) {
   formData.append('file', file);
    {/* @ts-ignore:next-line */}
-   formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-   await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+   formData.append('upload_preset', 'propertyImg');
+   await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
   method: 'POST',
   body: formData,
 })
@@ -292,8 +292,8 @@ const files = e.target.files
 for ( const file of files) {
  formData.append('file', file);
   {/* @ts-ignore:next-line */}
-  formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-  await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+  formData.append('upload_preset', 'propertyImg');
+  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
   method: 'POST',
   body: formData,
 })
@@ -312,8 +312,8 @@ const files = e.target.files
 for ( const file of files) {
  formData.append('file', file);
   {/* @ts-ignore:next-line */}
-  formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-  await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+  formData.append('upload_preset', 'propertyImg');
+  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
  method: 'POST',
  body: formData,
 })
@@ -332,8 +332,8 @@ const files = e.target.files
 for ( const file of files) {
 formData.append('file', file);
  {/* @ts-ignore:next-line */}
- formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
- await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+ formData.append('upload_preset', 'propertyImg');
+    await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
 method: 'POST',
 body: formData,
 })
@@ -352,8 +352,8 @@ const files = e.target.files
 for ( const file of files) {
   formData.append('file', file);
    {/* @ts-ignore:next-line */}
-   formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-   await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+   formData.append('upload_preset', 'propertyImg');
+    await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
   method: 'POST',
   body: formData,
 })
@@ -372,8 +372,8 @@ const files = e.target.files
 for ( const file of files) {
  formData.append('file', file);
   {/* @ts-ignore:next-line */}
-  formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-  await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+  formData.append('upload_preset', 'propertyImg');
+    await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
  method: 'POST',
  body: formData,
 })
@@ -392,8 +392,8 @@ const files = e.target.files
 for ( const file of files) {
  formData.append('file', file);
   {/* @ts-ignore:next-line */}
-  formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
-  await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+  formData.append('upload_preset', 'propertyImg');
+  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
  method: 'POST',
  body: formData,
 })
@@ -412,8 +412,8 @@ const files = e.target.files
 for ( const file of files) {
 formData.append('file', file);
  {/* @ts-ignore:next-line */}
- formData.append(process.env.REACT_APP_CLOUD_PRESET, 'propertyImg');
- await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_KEY}/image/upload`, {
+ formData.append('upload_preset', 'propertyImg');
+    await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
 method: 'POST',
 body: formData,
 })

@@ -46,7 +46,7 @@ function BuyMap() {
        }}
        mapStyle="mapbox://styles/mapbox/streets-v9"
     // mapStyle="mapbox://styles/simiremichael/clcz22d6e00l814qni4m9qxaq"
-    mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+    mapboxAccessToken="pk.eyJ1Ijoic2ltaXJlbWljaGFlbCIsImEiOiJjbDhtMWZza3owOGM5M290aGdkdXNzbnhyIn0.cZ53EbJgw_QlQEq2-bRpWw"
     onMove={(nextViewPort: any) => setViewState(nextViewPort)}
     >
           {/* @ts-ignore:next-line */}
