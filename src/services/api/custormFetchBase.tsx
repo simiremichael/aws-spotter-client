@@ -5,7 +5,7 @@ import { setUsers, logoutUsers } from '../features/userSlice';
 import { setCompanies, companyLogout } from '../features/companySlice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl:'http://localhost:5000/api' || 'http://13.245.161.92/api', 
+  baseUrl:'http://13.245.161.92/api', 
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const agentToken = ( getState() as RootState).agentState.agentToken
