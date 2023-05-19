@@ -3,9 +3,9 @@ import { RootState } from '../../app/store';
   import { setAgents, logout } from '../features/agentSlice';
 import { setUsers, logoutUsers } from '../features/userSlice';
 import { setCompanies, companyLogout } from '../features/companySlice';
-
+//'http://13.245.161.92/api'
 const baseQuery = fetchBaseQuery({
-  baseUrl:'http://13.245.161.92/api', 
+  baseUrl: process.env.REACT_APP_SERVER_URL, 
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const agentToken = ( getState() as RootState).agentState.agentToken
