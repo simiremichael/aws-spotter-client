@@ -228,8 +228,7 @@ function NewProject() {
     const maxPrice = maxPriceQuery !== null ? maxPriceQuery : searchData.maxPrice
     const possession =  possessionQuery !== null ? possessionQuery : searchData.possession
     const sort = searchData.sort
-    console.log(searchData, search, type, minPrice, maxPrice, minBed, maxBed, possession)
-
+  
     //const searchQuery = searchParams.get('searchQuery');
 const page = searchParams.get('page') || 1;
 const dispatch = useAppDispatch();
