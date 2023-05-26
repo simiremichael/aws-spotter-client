@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import { Theme, useTheme } from '@mui/material';
+import { CircularProgress, Theme, useTheme } from '@mui/material';
 import { useAddPropertyMutation } from '../../services/api/propertyAPI'
 
 const StyledBox = styled(Box)`
@@ -179,7 +179,7 @@ const MenuProps = {
 
 function Features(props: { updateProperty: any, property: any, resetProperty: any, setProperty: any}) {
 
-  const [addProperty, {isSuccess}] = useAddPropertyMutation();
+  const [addProperty, {isSuccess, isLoading}] = useAddPropertyMutation();
   const theme = useTheme();
   const property = props.property;
   const setProperty = props.setProperty;
@@ -206,10 +206,10 @@ const reset = props.resetProperty;
     console.error('rejected', error);
   }
 };
-        
+         
 useEffect(() => {
   if(isSuccess) { 
-    navigate('/agentproperties')
+   navigate('/agentproperties')
  reset();
  toast.success('Submited successfully....')
   }
@@ -479,7 +479,7 @@ const [parking, setParking] = useState<string[]>([]);
      <ToastContainer />
    <ButtonContainer>
    <CloseButton type='button' onClick={handleBackButton}>Back</CloseButton>
-   <NextButton type='submit'>Submit</NextButton>
+   <NextButton type='submit'>{ isLoading ? <CircularProgress  size={12} color='inherit' /> : 'Submit'}</NextButton>
    </ButtonContainer>
     </Form> 
     </FormContainer>

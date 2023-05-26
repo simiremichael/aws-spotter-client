@@ -122,28 +122,48 @@ function AddAgent() {
 
 let navigate = useNavigate();
   
+// const handleUpload = async (e: any) => {
+//   setLoading(true);
+//   const files = e.target.files
+//   for ( const file of files) {
+//    const formData = new FormData();
+//    formData.append('file', file);
+//    {/* @ts-ignore:next-line */}
+//    formData.append('upload_preset', 'profileImg');
+//   await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
+//    method: 'POST',
+//    body: formData,   
+//  })
+//  .then(r => r.json())
+//  .then(data => {
+//   setAgent({...agent,  profilePicture: data.secure_url});
+//      if (data.url) {
+//       setLoading(false);
+//        toast.success('Uploaded successfully....')
+//       } 
+//      })
+//      };
+//   };  
+
 const handleUpload = async (e: any) => {
   setLoading(true);
   const files = e.target.files
-  for ( const file of files) {
    const formData = new FormData();
-   formData.append('file', file);
-   {/* @ts-ignore:next-line */}
-   formData.append('upload_preset', 'profileImg');
-  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
+   formData.append('picture', files[0]);
+  await fetch('http://localhost:5000/api/agents/upload', {
    method: 'POST',
-   body: formData,   
+   body: formData,
  })
  .then(r => r.json())
  .then(data => {
-  setAgent({...agent,  profilePicture: data.secure_url});
-     if (data.url) {
+  console.log(data);
+  setAgent({...agent,  profilePicture: data.url});
+     if (data) {
       setLoading(false);
-       toast.success('Uploaded successfully....')
-      } 
+        toast.success('Uploaded successfully....')
+       } 
      })
-     };
-  };  
+    }
 
     const handleSubmit = async (e: any) => { 
       e.preventDefault()

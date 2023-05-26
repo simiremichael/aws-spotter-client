@@ -444,18 +444,18 @@ tagTypes: ['Properties', 'Users', 'Agents', 'AgentReset', 'Companies', 'Mortgage
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
               }),
               searchProperties: builder.query<PropertyModel, any>({
-                query: ({search, toggle, minPrice, maxPrice, type, page, selectBed, selectBath,duration}: any)  => `/properties/search?search=${search}&toggle=${toggle}&type=${type}&duration=${duration}&selectBath=${selectBath}&selectBed=${selectBed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
+                query: ({search, toggle, minPrice, maxPrice, type, page, state, selectBed, selectBath,duration}: any)  => `/properties/search?search=${search}&state=${state}&toggle=${toggle}&type=${type}&duration=${duration}&selectBath=${selectBath}&selectBed=${selectBed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
                 //search, toggle, minPrice, maxPrice, type, selectBed, selectBath,duration
               }),
               searchPropertiesByBuy: builder.query<PropertyModel, any>({
-                query: ({searchQuery, search, category, sort, bed,bath, minPrice, maxPrice, type, page}: any)  => `/properties/buy?search=${search}&category=${category}&type=${type}&sort=${sort}&bath=${bath}&bed=${bed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
+                query: ({searchQuery, search, category, sort, bed,bath, minPrice, maxPrice, type, state, page}: any)  => `/properties/buy?search=${search}&category=${category}&type=${type}&state=${state}&sort=${sort}&bath=${bath}&bed=${bed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
                 //transformResponse: (response: any) => response.reverse(),
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
                 //search, category, sort, bed, bath, minPrice, maxPrice, type, page
               }),
               searchPropertiesByRent: builder.query<PropertyModel, any>({
-                query: ({searchQuery, search, category, sort, bed,bath, minPrice, maxPrice, type, page}: any)  => `/properties/rent?search=${search}&category=${category}&type=${type}&sort=${sort}&bath=${bath}&bed=${bed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
+                query: ({searchQuery, search, category, sort, bed,bath, minPrice, state, maxPrice, type, page}: any)  => `/properties/rent?search=${search}&category=${category}&type=${type}&state=${state}&sort=${sort}&bath=${bath}&bed=${bed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
                // transformResponse: (response: any) => response.sort((a: any, b: any) => b - a),
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
                 //search, category, sort, bed, bath, minPrice, maxPrice, type, page
@@ -466,18 +466,18 @@ tagTypes: ['Properties', 'Users', 'Agents', 'AgentReset', 'Companies', 'Mortgage
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
               }),
               commercial: builder.query<PropertyModel, any>({
-                query: ({searchQuery, search, category, propertyGroup, sort, bed,bath, minPrice, maxPrice, type, page}: any)  => `/properties/commercial?search=${search}&propertyGroup=${propertyGroup}&category=${category}&type=${type}&sort=${sort}&bath=${bath}&bed=${bed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
+                query: ({searchQuery, search, category, propertyGroup, state, sort, bed,bath, minPrice, maxPrice, type, page}: any)  => `/properties/commercial?search=${search}&propertyGroup=${propertyGroup}&state=${state}&category=${category}&type=${type}&sort=${sort}&bath=${bath}&bed=${bed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}`,
                // transformResponse: (response: any) => response.sort((a: any, b: any) => b - a),
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
                 //search, category, sort, bed, bath, minPrice, maxPrice, type, page
               }),
               newProject: builder.query<PropertyModel, any>({
-                query: ({ search, sort, possession, minBed, maxBed, minPrice, maxPrice, type, propertyGroup, page}: any)  => `/properties/newProject?search=${search}&type=${type}&sort=${sort}&minBed=${minBed}&maxBed=${maxBed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}&possession=${possession}&propertyGroup=${propertyGroup}`,
+                query: ({ search, sort, possession, state, minBed, maxBed, minPrice, maxPrice, type, propertyGroup, page}: any)  => `/properties/newProject?search=${search}&type=${type}&state=${state}&sort=${sort}&minBed=${minBed}&maxBed=${maxBed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}&possession=${possession}&propertyGroup=${propertyGroup}`,
                 //transformResponse: (response: any) => response.reverse(),
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
               }),
               offplan: builder.query<PropertyModel, any>({
-                query: ({search, sort, minBed, maxBed, minPrice, possession, maxPrice, type, propertyGroup, page}: any)  => `/properties/offplan?search=${search}&type=${type}&sort=${sort}&minBed=${minBed}&maxBed=${maxBed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}&possession=${possession}&propertyGroup=${propertyGroup}`,
+                query: ({search, sort, minBed, maxBed, minPrice, possession, state, maxPrice, type, propertyGroup, page}: any)  => `/properties/offplan?search=${search}&type=${type}&state=${state}&sort=${sort}&minBed=${minBed}&maxBed=${maxBed}&minPrice=${minPrice}&maxPrice=${maxPrice}&page=${page}&possession=${possession}&propertyGroup=${propertyGroup}`,
                 //transformResponse: (response: any) => response.reverse(),
                 providesTags: (result: any, error: any, id: any) =>  [{ type:'Properties', id: 'PROP' }],  
               }),

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -9,6 +9,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 
 const StyledBox = styled(Box)`
@@ -147,6 +152,74 @@ function Location(props: { updateProperty: any, property: any, setProperty: any}
     navigate('/agentproperties/propertyType')
   }
 
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    callbackName: "initMap", 
+    requestOptions: {
+      /* Define search scope here */
+    },
+    debounce: 300,
+  });
+ 
+
+  const handleInput = (e: any) => {
+    // Update the keyword of the input element
+    setValue(e.target.value);
+    // setProperty({...property, address: e.target.value})
+  };
+
+  const ref = useOnclickOutside(() => {
+    // When user clicks outside of the component, we can dismiss
+    // the searched suggestions by calling this method
+    getGeocode({ address: property.address }).then((results) => {
+      const { lat, lng } = getLatLng(results[0]);
+      console.log("📍 Coordinates: ", { lat, lng });
+      setProperty({...property, latitude: lat, longitude: lng})
+    });
+    
+    clearSuggestions();
+  });
+
+  console.log(property)
+  const handleSelect =
+    ({ description }: any) =>
+    () => {
+      // When user selects a place, we can replace the keyword without request data from API
+      // by setting the second parameter to "false"
+      setValue(description, false);
+      clearSuggestions();
+
+      // Get latitude and longitude via utility functions
+      getGeocode({ address: description }).then((results) => {
+        const { lat, lng } = getLatLng(results[0]);
+        console.log("📍 Coordinates: ", { lat, lng });
+        setProperty({...property, latitude: lat, longitude: lng})
+      });
+    };
+
+    useEffect(() => {
+      setProperty({...property, address: value})
+    },[value, property.address])
+
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <li key={place_id} onClick={handleSelect(suggestion)}>
+          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        </li>
+      );
+    });
+
   return (
     <StyledBox>
  <StyledContainer>
@@ -171,7 +244,22 @@ function Location(props: { updateProperty: any, property: any, setProperty: any}
   <InputContainer>
   <Grid container spacing={2}>
   <Grid item lg={7} md={7} sm={12} xs={12}>
-  <AddressInput1 variant='outlined' label='ADDRESS' type='text' {...register('address',{required: 'Property address is required....'})} name='address' value={property.address} onChange={(e: any) => setProperty({...property, address: e.target.value})} size='small' />
+  <div ref={ref}>
+  <AddressInput1 variant='outlined' 
+  label='ADDRESS' autoComplete='address' 
+  type='text'  name='address' 
+  value={value} 
+  onChange={handleInput} 
+ // (e: any) => setProperty({...property, address: e.target.value}) &&
+  size='small' />
+      {/* <input
+        value={value}
+        onChange={handleInput}
+        placeholder="Where are you going?"
+      /> */}
+      {/* We can use the "status" to decide whether we should display the dropdown or not */}
+      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+    </div>
   </Grid>
   {/* <Grid item lg={6} md={6} sm={12} xs={12}>
   <AddressInput2 variant='outlined' label='ADDRESS LINE 2' type='text' {...register('address2')} name='address2' value={property.address2} onChange={(e: any) => setProperty({...property, address2: e.target.value})} size='small' />

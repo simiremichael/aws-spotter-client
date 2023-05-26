@@ -354,7 +354,7 @@ max-width: 140px;
 function NavBar() {
 
   const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '', familyName: '', givenName: '', picture: '', role: ''}
-
+const [files, setFiles] = useState('')
     const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
      const [isSignup, setIsSignup] = useState(false);
@@ -474,29 +474,43 @@ function NavBar() {
         }
       },[navigate, logoutSuccess])
   
+// const handleUpload = async (e: any) => {
+//   setLoading(true);
+//   const files = e.target.files
+    
+//   for ( const file of files) {
+//    const formData = new FormData();
+//    formData.append('file', file);
+//    {/* @ts-ignore:next-line */}
+//    formData.append('upload_preset', 'userProfileImg');
+//   await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
+//    method: 'POST',
+//    body: formData,
+//  })
+//  
+//      };
+//   };
+
 const handleUpload = async (e: any) => {
   setLoading(true);
   const files = e.target.files
-    
-  for ( const file of files) {
    const formData = new FormData();
-   formData.append('file', file);
-   {/* @ts-ignore:next-line */}
-   formData.append('upload_preset', 'userProfileImg');
-  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
+   formData.append('picture', files[0]);
+  await fetch('http://localhost:5000/api/users/upload', {
    method: 'POST',
    body: formData,
  })
  .then(r => r.json())
  .then(data => {
-  setUserFormData({...userFormData, picture: data.secure_url});
-     if (data.url) {
+  setUserFormData({...userFormData, picture: data.url});
+     if (data) {
       setLoading(false);
-       toast.success('Uploaded successfully....')
-      } 
+        toast.success('Uploaded successfully....')
+       } 
      })
      };
-  };
+
+
   // const deleteImage = async (e: any) => {
   //   e.preventDefault();
   //   {/* @ts-ignore:next-line */}

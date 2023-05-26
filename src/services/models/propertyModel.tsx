@@ -60,4 +60,6 @@ export interface PropertyModel {
  email: string
  property: {}
  data: {}
+ result: {} | string
+ imagename: [] | {}
 }

@@ -312,29 +312,50 @@ const handleResetPassword = () => {
  }
 }
 
-const handleUpload = async (e: any) => {
-  setLoading(true);
-  const files = e.target.files
+// const handleUpload = async (e: any) => {
+//   setLoading(true);
+//   const files = e.target.files
     
-  for ( const file of files) {
-   const formData = new FormData();
-   formData.append('file', file);
-   {/* @ts-ignore:next-line */}
-   formData.append('upload_preset', 'CompanyLogo');
-  await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
-   method: 'POST',
-   body: formData,   
- })
- .then(r => r.json())
- .then(data => {
-  setAdminFormData({...adminFormData, logo: data.secure_url});
-     if (data.url) {
-      setLoading(false);
-       toast.success('Uploaded successfully....')
-      } 
-     })
-     };
-  };
+//   for ( const file of files) {
+//    const formData = new FormData();
+//    formData.append('file', file);
+//    {/* @ts-ignore:next-line */}
+//    formData.append('upload_preset', 'CompanyLogo');
+//   await fetch('https://api.cloudinary.com/v1_1/do2u3zzko/image/upload', {
+//    method: 'POST',
+//    body: formData,   
+//  })
+//  .then(r => r.json())
+//  .then(data => {
+//   setAdminFormData({...adminFormData, logo: data.secure_url});
+//      if (data.url) {
+//       setLoading(false);
+//        toast.success('Uploaded successfully....')
+//       } 
+//      })
+//      };
+//   };
+
+  const handleUpload = async (e: any) => {
+    setLoading(true);
+    const files = e.target.files
+     const formData = new FormData();
+     formData.append('picture', files[0]);
+    await fetch('http://localhost:5000/api/companies/upload', {
+     method: 'POST',
+     body: formData,
+   })
+   .then(r => r.json())
+   .then(data => {
+    console.log(data);
+    setAdminFormData({...adminFormData, logo: data.url});
+    //setUserFormData({...userFormData, picture: data.url});
+       if (data) {
+        setLoading(false);
+          toast.success('Uploaded successfully....')
+         } 
+       })
+      }
 
   return (
     <StyledBox>

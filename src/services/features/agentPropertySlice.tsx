@@ -5,7 +5,7 @@ import  {PropertyModel} from '../models/index';
 
 interface  AgentPropertyAuthState {
   // agentProperty:  undefined | string | PropertyModel | null ;  
-  agentProperty:  undefined | null | PropertyModel ; 
+  agentProperty:  undefined | null | PropertyModel | string ; 
 }
 
 const initialState:  AgentPropertyAuthState = { 
@@ -18,7 +18,7 @@ export const agentPropertySlice = createSlice({
   name: 'AgentPropertyAuth',
   initialState,
   reducers: {
-    setAgentProperties: (state, action: PayloadAction<{ agentProperty: undefined | null | PropertyModel }>) => {
+    setAgentProperties: (state, action: PayloadAction<{ agentProperty: string| undefined | null | PropertyModel }>) => {
        state.agentProperty = action.payload.agentProperty;
     }
   }

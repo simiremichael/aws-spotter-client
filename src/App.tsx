@@ -79,9 +79,9 @@ import GetAgentOTP from './pages/GetAgentOtp';
 function App() {
   const initialValue = {propertyTitle: '', description: '', uniqNo: '', bedroom: '', kitchen: '', livingRoom: '', 
   showerRoom: '', bathRoom: '', buildingYear: '', yearRenovated: '', lotSize: '', condition: '',pets: [], parking: [],
- hvac: [], comfort: [], security: [], address: '', street: '', house: '', location: '', state: '', 
+ hvac: [], comfort: [], security: [], address: '', street: '', house: '', location: '', state: '', latitude: '', longitude: '',
  postCode: '', lga: '', images: [], size: '', price: '', category: '', propertyTax: '', electricity: '', water: '', serviceCharge: '',
- utilities: '', taxes: '',video: '',tour: '',propertyType: '', estateName: '', buildingName: '', developer: '', propertyGroup: '', paymentType: '', slideImages: []}
+ utilities: '', taxes: '',video: '', imagename: [], our: '',propertyType: '', estateName: '', buildingName: '', developer: '', propertyGroup: '', paymentType: '', slideImages: []}
  const [property, setProperty] = useState(initialValue);
 
  const updateProperty = (data: any) => {

@@ -253,8 +253,9 @@ function PropertySizeAndPrice(props: {updateProperty: any, property: any, setPro
      name='paymentType'
      onChange={(e: any) => setProperty({...property, paymentType: e.target.value})}
      >
-      <Option>Choose</Option>
-     <Option value='total price'>Total price</Option>
+      <Option>Payment</Option>
+     {/* <Option value='total price'>Total price</Option> */}
+     <Option value='outright'>Outright</Option>
      <Option value='price per square meter'>Price per square meter</Option>
      </Select>
       </> :
@@ -265,12 +266,11 @@ function PropertySizeAndPrice(props: {updateProperty: any, property: any, setPro
      value={property.paymentType}
      onChange={(e: any) => {setProperty({...property, paymentType: e.target.value})}}
      >
-      <Option>Choose</Option>
-      <Option value='yearly'>Yearly price</Option>
-      <Option value='outright'>Outright</Option>
-      <Option value='monthly'>Monthly price</Option>
-      <Option value='weekly'>Weekly price</Option>
-      <Option value='daily'>Daily price</Option>
+      <Option>payment</Option>
+      <Option value='yearly'>Yearly</Option>
+      <Option value='monthly'>Monthly</Option>
+      <Option value='weekly'>Weekly</Option>
+      <Option value='daily'>Daily</Option>
      </Select>
      </>
      }

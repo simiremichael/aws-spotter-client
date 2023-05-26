@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { Alert, ClickAwayListener, Link, Skeleton } from '@mui/material';
+import { Alert, ClickAwayListener, FormControl, InputLabel, Link, Select, Skeleton } from '@mui/material';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Tooltip from '@mui/material/Tooltip';
 import { useSearchPropertiesQuery } from '../services/api/propertyAPI';
@@ -318,6 +318,9 @@ border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.5 );
 hight: auto;
 padding-bottom: 10px;
+@media screen and (min-width: 900px) {
+  margin-top: -45px;
+}
 `
 const StyledGrid = styled(Grid)`
 margin-bottom: 15px;
@@ -599,7 +602,7 @@ const priceState = 'Prices'
   const [bath, setBath] = useState('');
   const [value1, setValue1] = useState(priceState);
   const [value2, setValue2] = useState('');
-  const initialData = {toggle: '', search: '', type: '', select_bed: '', page: '', select_bath: '', MinPrice: '', MaxPrice: '', duration: ''  }
+  const initialData = {toggle: '', search: '', type: '', state: 'lagos', select_bed: '', page: '', select_bath: '', MinPrice: '', MaxPrice: '', duration: ''  }
   const [searchData, setSearchData] = useState(initialData)
    let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate()
@@ -657,9 +660,10 @@ const debounceSearch = searchData.search
  const minPrice = searchData.MinPrice
  const duration = searchData.duration
  const maxPrice = searchData.MaxPrice
+ const state = searchData.state
 
 
-  const {data, isFetching} = useSearchPropertiesQuery({page,  search, minPrice, maxPrice, toggle, type, selectBed, selectBath, duration });
+  const {data, isFetching} = useSearchPropertiesQuery({page, state, search, minPrice, maxPrice, toggle, type, selectBed, selectBath, duration });
 
   useEffect(() => {
     if(data) {
@@ -713,7 +717,7 @@ useEffect(() => {
       <InnerContainer sx={{ position: 'relative' }}>
       <Form>
         <Grid container> 
-          <Grid item lg={2} md={2} sm={4} xs={6}>
+          <Grid item lg={1.5} md={1.8} sm={2.5} xs={5}>
           <TopContainer>
           <BtnInput type='radio' name='toggle' id='buy' value='sale' onChange={handleChange}/>
           <Label htmlFor='buy'>Buy</Label>
@@ -721,6 +725,59 @@ useEffect(() => {
           <Label htmlFor='rent'>Rent</Label>  
           </TopContainer>
           </Grid>
+          <Grid item lg={10} md={10} sm={8} xs={6}>
+          <FormControl sx={{  minWidth: 90 }} size="small">
+           <InputLabel id="demo-simple-select-autowidth-label">State</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          name='state'
+          value={searchData.state}
+          label='Choose a State'
+          autoWidth
+          onChange={handleChange}
+        >
+           <Option value='lagos'>Lagos</Option>
+          <Option value='abuja'>Abuja</Option>
+          <Option value='ogun'>Ogun</Option>
+          <Option value='rivers'>Rivers</Option>
+          <Option value='oyo'>Oyo</Option>
+          <Option value='ekiti'>Ekiti</Option>
+          <Option value='ondo'>Ondo</Option>
+          <Option value='edo'>Edo</Option>
+          <Option value='delta'>Delta</Option>
+          <Option value='akwa ibom'>Akwa Ibom</Option>
+          <Option value='abia'>Abia</Option>
+          <Option value='kogi'>Kogi</Option>
+          <Option value='bayelsa'>Bayelsa</Option>
+          <Option value='benue'>Benue</Option>
+          <Option value='kaduna'>Kaduna</Option>
+          <Option value='kanu'>Kanu</Option>
+          <Option value='katsina'>Katsina</Option>
+          <Option value='yobe'>Yobe</Option>
+          <Option value='cross river'>Cross River</Option>
+          <Option value='taraba'>Taraba</Option>
+          <Option value='nasarawa'>Nasarawa</Option>
+          <Option value='imo'>Imo</Option>
+          <Option value='enugu'>Enugu</Option>
+          <Option value='kwara'>Kwara</Option>
+          <Option value='kebbi'>Kebbi</Option>
+          <Option value='adamawa'>Adamawa</Option>
+          <Option value='bauchi'>Bauchi</Option>
+          <Option value='jigawa'>Jigawa</Option>
+          <Option value='anambra'>Anambra</Option>
+          <Option value='osun'>Osun</Option>
+          <Option value='niger'>Niger</Option>
+          <Option value='bornu'>Bornu</Option>
+          <Option value='ebonyi'>Ebonyi</Option>
+          <Option value='ekiti'>Ekiti</Option>
+          <Option value='zanfara'>Zanfara</Option>
+          <Option value='gombe'>Gombe</Option>
+          <Option value='bayelsa'>Bayelsa</Option>
+          <Option value='rivers'>Rivers</Option>
+        </Select> 
+        </FormControl>
+        </Grid>
         </Grid>
         
       <StyledBottomContainer>

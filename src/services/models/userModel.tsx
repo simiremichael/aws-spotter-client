@@ -12,5 +12,5 @@ export interface UserModel {
   token: string
   refreshToken: string
   name: string
-
+formData: any
 }

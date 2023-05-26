@@ -451,7 +451,7 @@ function Buy() {
    const maxPriceQuery = searchParams.get('maxPrice');
   const navigate = useNavigate()
 
-  const initialize = {search: '' , category: 'sale', type: '', bed: '', bath: '', minPrice: '', maxPrice: '', sort: ''}
+  const initialize = {search: '' , category: 'sale', type: '', state: 'lagos', bed: '', bath: '', minPrice: '', maxPrice: '', sort: ''}
 const [searchData, setSearchData] = useState(initialize)
 
 const debounceSearch = searchData.search
@@ -465,10 +465,11 @@ const bath = bathQuery !== null ? bathQuery : searchData.bath
 const minPrice = minPriceQuery !== null ? minPriceQuery : searchData.minPrice
 const maxPrice = maxPriceQuery !== null ? maxPriceQuery : searchData.maxPrice
 const sort = searchData.sort
+const state = searchData.state
 
 const page = searchParams.get('page') || 1;
 
- const {data, isFetching} = useSearchPropertiesByBuyQuery({ search, category, sort, bed,bath, minPrice, maxPrice, type, page}, {refetchOnMountOrArgChange: true });
+ const {data, isFetching} = useSearchPropertiesByBuyQuery({ search, category, sort, bed,bath, minPrice, maxPrice, type, page, state}, {refetchOnMountOrArgChange: true });
  //search, category, sort, bed,bath, minPrice, maxPrice, type, page;
 
   const handleChange = (e: any) => {
@@ -745,6 +746,8 @@ useEffect(() => {
      <StyledBox>
         <StyledContainer>
         <TopContainer>
+          <Grid container>
+            <Grid item lg={10} md={9} sm={8} xs={12}>
           <Title>Properties for sale in Nigeria</Title>
           <SalesContainer>
              {/* @ts-ignore:next-line */}
@@ -752,8 +755,64 @@ useEffect(() => {
             {/* @ts-ignore:next-line */}
             <NewSales>{buyProperty?.total / 2} new</NewSales>
           </SalesContainer>
+        </Grid>
+        </Grid>
         </TopContainer>
-
+        <Grid container>
+        <Grid item lg={2} md={3} sm={40} xs={12}>
+          <FormControl sx={{ marginLeft: '3px', minWidth: 90, marginTop: 2, marginBottom: 2 }} size="small">
+           <InputLabel id="demo-simple-select-autowidth-label">State</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          name='state'
+          value={searchData.state}
+          label='Choose a State'
+          autoWidth
+          onChange={handleChange}
+        >
+           <MenuItem value='lagos'>Lagos</MenuItem>
+          <MenuItem value='abuja'>Abuja</MenuItem>
+          <MenuItem value='ogun'>Ogun</MenuItem>
+          <MenuItem value='rivers'>Rivers</MenuItem>
+          <MenuItem value='oyo'>Oyo</MenuItem>
+          <MenuItem value='ekiti'>Ekiti</MenuItem>
+          <MenuItem value='ondo'>Ondo</MenuItem>
+          <MenuItem value='edo'>Edo</MenuItem>
+          <MenuItem value='delta'>Delta</MenuItem>
+          <MenuItem value='akwa ibom'>Akwa Ibom</MenuItem>
+          <MenuItem value='abia'>Abia</MenuItem>
+          <MenuItem value='kogi'>Kogi</MenuItem>
+          <MenuItem value='bayelsa'>Bayelsa</MenuItem>
+          <MenuItem value='benue'>Benue</MenuItem>
+          <MenuItem value='kaduna'>Kaduna</MenuItem>
+          <MenuItem value='kanu'>Kanu</MenuItem>
+          <MenuItem value='katsina'>Katsina</MenuItem>
+          <MenuItem value='yobe'>Yobe</MenuItem>
+          <MenuItem value='cross river'>Cross River</MenuItem>
+          <MenuItem value='taraba'>Taraba</MenuItem>
+          <MenuItem value='nasarawa'>Nasarawa</MenuItem>
+          <MenuItem value='imo'>Imo</MenuItem>
+          <MenuItem value='enugu'>Enugu</MenuItem>
+          <MenuItem value='kwara'>Kwara</MenuItem>
+          <MenuItem value='kebbi'>Kebbi</MenuItem>
+          <MenuItem value='adamawa'>Adamawa</MenuItem>
+          <MenuItem value='bauchi'>Bauchi</MenuItem>
+          <MenuItem value='jigawa'>Jigawa</MenuItem>
+          <MenuItem value='anambra'>Anambra</MenuItem>
+          <MenuItem value='osun'>Osun</MenuItem>
+          <MenuItem value='niger'>Niger</MenuItem>
+          <MenuItem value='bornu'>Bornu</MenuItem>
+          <MenuItem value='ebonyi'>Ebonyi</MenuItem>
+          <MenuItem value='ekiti'>Ekiti</MenuItem>
+          <MenuItem value='zanfara'>Zanfara</MenuItem>
+          <MenuItem value='gombe'>Gombe</MenuItem>
+          <MenuItem value='bayelsa'>Bayelsa</MenuItem>
+          <MenuItem value='rivers'>Rivers</MenuItem>
+        </Select> 
+        </FormControl>
+        </Grid>
+        </Grid>
         <SortContainer>
           <LeftContainer>
             <MapContainer onClick={() => navigate('/buymap')}>

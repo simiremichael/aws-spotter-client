@@ -76,7 +76,7 @@ align-items: start;
         </Links>
         <ContactContainer>
           <span>Having troubles?</span>
-          <a href="#">Contact us </a>
+          <a href='mailto:sales@residencespotter.com'>Contact us</a>
         </ContactContainer>
         <ToastContainer />
       </LinksContainer>

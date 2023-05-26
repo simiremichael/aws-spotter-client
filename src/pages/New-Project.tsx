@@ -216,7 +216,7 @@ function NewProject() {
   const maxPriceQuery = searchParams.get('maxPrice');
   const possessionQuery = searchParams.get('possession');
   const navigate = useNavigate()
-  const [searchData, setSearchData] = useState({search: '', propertyGroup: 'New Projects', type: '', minBed: '', maxBed: '', minPrice: '', maxPrice: '', possession: '', sort: ''})
+  const [searchData, setSearchData] = useState({search: '', state: 'lagos', propertyGroup: 'New Projects', type: '', minBed: '', maxBed: '', minPrice: '', maxPrice: '', possession: '', sort: ''})
   const debounceSearch = searchData.search
   const debounce = useDebounce(debounceSearch, 800);
     const search = searchQuery !== null ? searchQuery : debounce
@@ -228,12 +228,13 @@ function NewProject() {
     const maxPrice = maxPriceQuery !== null ? maxPriceQuery : searchData.maxPrice
     const possession =  possessionQuery !== null ? possessionQuery : searchData.possession
     const sort = searchData.sort
+    const state = searchData.state
   
     //const searchQuery = searchParams.get('searchQuery');
 const page = searchParams.get('page') || 1;
 const dispatch = useAppDispatch();
 
-    const {data, isFetching} = useNewProjectQuery({search, minPrice, maxPrice, minBed, maxBed, type, propertyGroup, possession, sort, page}, {refetchOnMountOrArgChange: true })
+    const {data, isFetching} = useNewProjectQuery({search, minPrice, state, maxPrice, minBed, maxBed, type, propertyGroup, possession, sort, page}, {refetchOnMountOrArgChange: true })
   
     useEffect(() => {
    dispatch(setNewProjects({newProjects: data}))
@@ -461,6 +462,63 @@ const dispatch = useAppDispatch();
     {/* @ts-ignore:next-line */}
     { data?.data.length < 1 ? <Alert style={{marginTop: '10px'}} severity="info">No data found!</Alert> : ''}
     </StyledContainer>
+    <StyledContainer>
+    <Grid container>
+        <Grid item lg={2} md={3} sm={40} xs={12}>
+          <FormControl sx={{ marginLeft: '3px', minWidth: 90, marginTop: 2, marginBottom: 2 }} size="small">
+           <InputLabel id="demo-simple-select-autowidth-label">State</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          name='state'
+          value={searchData.state}
+          label='Choose a State'
+          autoWidth
+          onChange={handleChange}
+        >
+           <MenuItem value='lagos'>Lagos</MenuItem>
+          <MenuItem value='abuja'>Abuja</MenuItem>
+          <MenuItem value='ogun'>Ogun</MenuItem>
+          <MenuItem value='rivers'>Rivers</MenuItem>
+          <MenuItem value='oyo'>Oyo</MenuItem>
+          <MenuItem value='ekiti'>Ekiti</MenuItem>
+          <MenuItem value='ondo'>Ondo</MenuItem>
+          <MenuItem value='edo'>Edo</MenuItem>
+          <MenuItem value='delta'>Delta</MenuItem>
+          <MenuItem value='akwa ibom'>Akwa Ibom</MenuItem>
+          <MenuItem value='abia'>Abia</MenuItem>
+          <MenuItem value='kogi'>Kogi</MenuItem>
+          <MenuItem value='bayelsa'>Bayelsa</MenuItem>
+          <MenuItem value='benue'>Benue</MenuItem>
+          <MenuItem value='kaduna'>Kaduna</MenuItem>
+          <MenuItem value='kanu'>Kanu</MenuItem>
+          <MenuItem value='katsina'>Katsina</MenuItem>
+          <MenuItem value='yobe'>Yobe</MenuItem>
+          <MenuItem value='cross river'>Cross River</MenuItem>
+          <MenuItem value='taraba'>Taraba</MenuItem>
+          <MenuItem value='nasarawa'>Nasarawa</MenuItem>
+          <MenuItem value='imo'>Imo</MenuItem>
+          <MenuItem value='enugu'>Enugu</MenuItem>
+          <MenuItem value='kwara'>Kwara</MenuItem>
+          <MenuItem value='kebbi'>Kebbi</MenuItem>
+          <MenuItem value='adamawa'>Adamawa</MenuItem>
+          <MenuItem value='bauchi'>Bauchi</MenuItem>
+          <MenuItem value='jigawa'>Jigawa</MenuItem>
+          <MenuItem value='anambra'>Anambra</MenuItem>
+          <MenuItem value='osun'>Osun</MenuItem>
+          <MenuItem value='niger'>Niger</MenuItem>
+          <MenuItem value='bornu'>Bornu</MenuItem>
+          <MenuItem value='ebonyi'>Ebonyi</MenuItem>
+          <MenuItem value='ekiti'>Ekiti</MenuItem>
+          <MenuItem value='zanfara'>Zanfara</MenuItem>
+          <MenuItem value='gombe'>Gombe</MenuItem>
+          <MenuItem value='bayelsa'>Bayelsa</MenuItem>
+          <MenuItem value='rivers'>Rivers</MenuItem>
+        </Select> 
+        </FormControl>
+        </Grid>
+        </Grid>
+        </StyledContainer>
     <StyledBox>
            {/* @ts-ignore:next-line */}
            { data?.data && isFetching ?

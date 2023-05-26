@@ -564,6 +564,8 @@ function RentDetailsPage() {
 const initial = {longitude: rentDetail?.longitude, latitude: rentDetail?.latitude, zoom: 14}
 const [viewState, setViewState] = useState(initial)
 
+console.log(rentDetail)
+
   return (
     <StyledBox>
         <NavBar />
@@ -610,8 +612,8 @@ const [viewState, setViewState] = useState(initial)
         } }
       >
           {/* @ts-ignore:next-line */}
-        {rentDetail?.images?.map((img: any) => (
-  <SplideSlide>
+        {rentDetail?.images?.map((img: any, index: any) => (
+  <SplideSlide key={index}>
     <ViewImg src={img.img}/>
   </SplideSlide>
   ))}

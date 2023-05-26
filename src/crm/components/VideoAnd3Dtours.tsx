@@ -103,6 +103,20 @@ margin-bottom: 8px;
 const TourUrl = styled(TextField)`
 marging-top: 8px;
 `
+const TourInfo = styled.p`
+font-size: 0.8rem;
+`
+const ViewBtn = styled.button`
+outline: none;
+border: none;
+font-size: 0.8rem;
+color: #007FFF;
+background-color: inherit;
+cursor: pointer;
+:hover {
+  color: #6CB4EE;
+}
+`
 
 function VideoAnd3Dtours(props: { updateProperty: any, property: any, setProperty: any}) {
 
@@ -114,6 +128,7 @@ function VideoAnd3Dtours(props: { updateProperty: any, property: any, setPropert
       tour: property.tour,
     }
   });
+  const [viewInfo, setViewInfo] = useState(false)
 
  let navigate = useNavigate();
   
@@ -156,7 +171,35 @@ const handleBackButton = () => {
       <VideoUrl variant='outlined' label='LINK TO VIDEO' type='url' {...register('video',{required: false })} name='video' value={property.video} onChange={(e: any) => setProperty({...property, video: e.target.value})} size='small' fullWidth />
       <TourUrl variant='outlined' label='LINK TO 3D TOURS' type='url' {...register('tour',{required: false })} name='tour' value={property.tour} onChange={(e: any) => setProperty({...property, tour: e.target.value})} size='small' fullWidth />
       </VidContainer>
-     
+      <ViewBtn onClick={() => setViewInfo(!viewInfo)} type='button'>View info on how to upload video and tour.</ViewBtn>
+      {viewInfo &&
+      <>
+      <TourInfo>To upload a video to YouTube and copy the embed URL link, follow these steps:
+
+ 1. Sign in to your YouTube account: Go to YouTube's website (www.youtube.com) and sign in with your Google account. If you don't have an account, you'll need to create one. 
+<br />
+Click on the "Upload" button: In the top right corner of the YouTube homepage, click on the upward-pointing arrow icon next to the notification bell. This will open the upload menu.
+<br />
+2. Select your video file: Click on the "Select files to upload" button and choose the video file you want to upload from your computer. You can also drag and drop the file directly into the upload area.
+<br />
+3. Set the video details: While the video is uploading, you can add information about your video, such as the title, description, and tags. You can also choose the privacy settings and select a thumbnail image. 
+<br />
+4. Publish the video: Once the video has finished uploading, click on the "Publish" button to make it live on YouTube. You can also choose to schedule the video to be published at a later time or set it as unlisted or private if you don't want it to be publicly accessible. 
+<br />
+5. Access the video's embed URL link: After the video is published, go to the video's page on YouTube. Below the video player, you'll find a share button with an arrow. Click on it, and a sharing panel will appear. 
+<br />
+6. Copy the embed URL link: In the sharing panel, you'll see an "Embed" option. Click on it, and the embed code will be displayed.simply copy part of  the URL within the code, which typically starts with https and stopped just before the title. EXXAMPLE: <strong>https://www.youtube.com/embed/EfAl9bwzVZk</strong>. please note: remove the quotes before u continue.
+<br />
+That's it! You have successfully uploaded your video to YouTube and copied the embed URL link.</TourInfo>
+
+<br />
+
+<TourInfo><strong>For property tour:</strong></TourInfo>
+<TourInfo>Contact us via email or call us.</TourInfo>
+<TourInfo>sales@residencespotter.com</TourInfo>
+<TourInfo>08024990457</TourInfo>
+</> 
+            }
       <ToastContainer />
     <ButtonContainer>
     <CloseButton type='button' onClick={handleBackButton}>Back</CloseButton>
