@@ -14,6 +14,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import { Loader } from "@googlemaps/js-api-loader"
 
 
 const StyledBox = styled(Box)`
@@ -166,8 +167,21 @@ function Location(props: { updateProperty: any, property: any, setProperty: any}
     debounce: 300,
   });
  
+  // const loader = new Loader({
+  //   apiKey: "AIzaSyCC1JhVqHUe1VqIqLaEpvBqdx76VI7m10Q",
+  //   version: "weekly",
 
-  const handleInput = (e: any) => {
+  // });
+
+  // loader.load().then(async () => {
+  //   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  // //  let  map = new Map(document.getElementById("map") as HTMLElement, {
+  // //     center: { lat: -34.397, lng: 150.644 },
+  // //     zoom: 8,
+  // //   });
+  // });
+
+ const handleInput = (e: any) => {
     // Update the keyword of the input element
     setValue(e.target.value);
     // setProperty({...property, address: e.target.value})
@@ -245,7 +259,7 @@ function Location(props: { updateProperty: any, property: any, setProperty: any}
   <Grid container spacing={2}>
   <Grid item lg={7} md={7} sm={12} xs={12}>
   <div ref={ref}>
-  <AddressInput1 variant='outlined' 
+  <AddressInput1 variant='outlined' id='map'
   label='ADDRESS' autoComplete='address' 
   type='text'  name='address' 
   value={value} 
