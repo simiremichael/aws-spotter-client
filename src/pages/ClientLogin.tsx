@@ -16,6 +16,7 @@ import { setCompanies } from '../services/features/companySlice';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Backdrop, CircularProgress, LinearProgress } from '@mui/material';
 
+
 const StyledBox = styled(Box)`
 background-color: #f5f5f5;
 width: 100vw;
@@ -162,6 +163,10 @@ width: 80px;
  width: 100%;
  margin-top: 4px;
  `
+ const ErrMessage = styled.p`
+ color: red;
+ font-size: 0.8rem;
+ `
 //  const UploadBtn = styled.button`
 // width: 80px;
 // height: auto;
@@ -182,6 +187,8 @@ function ClientLogin() {
   const initialState = {  email: '', password: ''}
   const agentInitialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '', familyName: '', givenName: '', picture: '', role: ''}
   const adminInitialState = { companyName: '', phone: '', email: '', area: '', role: 'admin', address: '', password: '', confirmPassword: '', state: '', L_G_A: '', logo: ''}
+const [errorData, setErrorData] = useState('')
+  const [errorSet, setErrorSet] = useState(false)
   const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false)
      const [isSignup, setIsSignup] = useState(false);
@@ -197,7 +204,7 @@ function ClientLogin() {
     
      const [signinCompany, { data: data1, isError: isError1, error: error1, isSuccess: isSuccess1, isLoading: loadingAdmin } ] = useSigninCompanyMutation()
      const [signinAgent, { data: data2, isError: isError2, error: error2, isSuccess: isSuccess2, isLoading: loadingAgent } ] = useSigninAgentMutation()//  
-      const [addCompany, {isSuccess: addCompanyIsSuccess }] = useAddCompanyMutation();
+      const [addCompany, {isSuccess: addCompanyIsSuccess, isLoading: loadinADminSignup  }] = useAddCompanyMutation();
     
     //let location = useLocation();
     const dispatch = useAppDispatch()
@@ -237,7 +244,7 @@ function ClientLogin() {
 
     useEffect(() => { 
      if(addCompanyIsSuccess) {
-      toast.success('Login successfully....')
+      toast.success('Register successfully....')
       navigate("/client-login");
       setLogin(false);
       setIsSignup(false);
@@ -260,7 +267,14 @@ function ClientLogin() {
         e.preventDefault();
        
         if(isSignup) {
+          if(adminFormData.companyName === '' || adminFormData.phone === '' || adminFormData.email === '' || adminFormData.password === '' ) {
+            setErrorData('All fields are required');
+            setErrorSet(true)
+          }else{
             await addCompany({...adminFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error1: any) => console.error('rejected', error1));
+          }
+         
+         
         } else {
            if(admin === true) {
             setAgent(false);
@@ -303,6 +317,10 @@ function ClientLogin() {
 //      };
  
 //   }
+
+useEffect(() => { 
+
+},[])
 
 const handleResetPassword = () => {
  if(admin === true) {
@@ -422,7 +440,7 @@ const handleResetPassword = () => {
              <FormControls sx={{marginBottom: 2}}>
               <Grid container spacing={1}>
                 <Grid item lg={6} md={6} sm={6} xs={6}>
-                  <TextFields id="outlined-basic" type='text' name='companyName' value={adminFormData.companyName} onChange={handleChange} label="Company name" variant="outlined" size='small' />
+                  <TextFields id="outlined-basic" type='text'  name='companyName' value={adminFormData.companyName} onChange={handleChange} label="Company name" variant="outlined" size='small' />
                 </Grid>
                 <Grid item lg={6} md={6} sm={6} xs={6}>
                   <TextFields id="outlined-basic" type='text' name='phone' value={adminFormData.phone} onChange={handleChange} label="Phone" variant="outlined" size='small' />
@@ -431,7 +449,7 @@ const handleResetPassword = () => {
                               <Grid container>
                                 <>
                             <Grid item lg={12} md={12} sm={12} xs={12}>
-                              <TextFields id="outlined-basic" type='email' name='email' value={adminFormData.email} onChange={handleChange} label="Enter company email" variant="outlined" size='small' />
+                              <TextFields id="outlined-basic" type='email'  name='email' value={adminFormData.email} onChange={handleChange} label="Enter company email" variant="outlined" size='small' />
                               <TextFields
                                 id="outlined-basic"
                                 type='password'
@@ -489,6 +507,7 @@ const handleResetPassword = () => {
                                 </>
                                 </Grid>
                             </FormControls> 
+                            <ErrMessage>{errorData}</ErrMessage>
         </>
 }
 {/* </> */}
@@ -500,7 +519,7 @@ const handleResetPassword = () => {
         //   <ForgetPassword style={{ width: 80, display: 'flex', alignItems: 'center'}} onClick={() => setSwitchForm(false)}><ArrowBackIosNewSharpIcon sx={{fontSize: '14px'}} />Go back</ForgetPassword>
         //  </>
         //   } */}
-   <Button type='submit'>{ loadingAdmin || loadingAgent ? <CircularProgress  size={12} color='inherit' /> : isSignup ? 'Register' : 'Login' }</Button>
+   <Button type='submit'>{ loadingAdmin || loadingAgent  || loadinADminSignup  ? <CircularProgress  size={12} color='inherit' /> : isSignup ? 'Register' : 'Login' }</Button>
 <SwitchContainer>
           <SwitchP>{isSignup ?"Already have an account": "Don't have an account "}</SwitchP>
         <SwitchButton type='button' onClick={switchMode}><strong>

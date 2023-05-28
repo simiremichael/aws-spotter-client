@@ -75,6 +75,7 @@ import AgentResetPassword from './pages/AgentResetPassword';
 import GetAdminOTP from './pages/GetAdminOTP';
 import GetAgentOTP from './pages/GetAgentOtp';
 
+ 
 
 function App() {
   const initialValue = {propertyTitle: '', description: '', uniqNo: '', bedroom: '', kitchen: '', livingRoom: '', 
@@ -115,7 +116,7 @@ useEffect(() => {
  //console.log(property)
 //  const [company, setCompany] = useState(JSON.parse(localStorage.getItem('company') || 'false'));
       // const [agent, setAgent] = useState(JSON.parse(localStorage.getItem('agent') || 'false'));
-
+     
   return (
     <div className="App">
        <BrowserRouter>

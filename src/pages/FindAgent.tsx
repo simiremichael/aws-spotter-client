@@ -285,7 +285,7 @@ function FindAgent() {
       <StyledBoxBottom>
       <StyledContainer>
         <Grid container spacing={2}>
-      {!toggle &&
+      {toggle === false ?
         <>
         {/* @ts-ignore:next-line */}
         {agent?.data?.map((item: any) => (
@@ -313,8 +313,7 @@ function FindAgent() {
        </Grid>
       ))}
       </>
-}
-        {toggle &&
+      :
         <>
         {/* @ts-ignore:next-line */}
         {company?.data?.map((item: any) => (  
