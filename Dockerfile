@@ -1,15 +1,12 @@
-FROM node:18.13.0 
+FROM nginx:latest
 
 # Create app directory
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
-
 COPY . .
 
+RUN npm install
 
 EXPOSE 3000
 
-CMD [ "npm", "start"]
+# CMD [ "npm", "start"]
