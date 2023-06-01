@@ -217,7 +217,6 @@ function PropertyEditPage() {
      {/* @ts-ignore:next-line */}
 const storedData = editData?.images?.map((ed: any) => ed)
 
-console.log(storedData)
 
   const [imgstring1, setImgstring1] = useState('')
   const [imgstring2, setImgstring2] = useState('')

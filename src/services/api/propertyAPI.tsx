@@ -388,30 +388,50 @@ tagTypes: ['Properties', 'Users', 'Agents', 'AgentReset', 'Companies', 'Mortgage
                invalidatesTags: [{type: 'Companies', id: 'LIST'}],
              }),
              
-             updateCompany: builder.mutation<CompanyModel, Partial<CompanyModel>>({
-              query(data: { [x: string]: any; id: any; }) {
-                const { id, ...body} = data;
-                return {
+            //  updateCompany: builder.mutation<CompanyModel, Partial<CompanyModel>>({
+            //   query(data: { [x: string]: any; id: any; }) {
+            //     const { id, ...body} = data;
+            //     return {
+            //     url: `/companies/update/${id}`,
+            //     method: 'PATCH',
+            //     body,  
+            //     }
+            //    },
+            //   //  transformResponse: (response: { data: CompanyModel }, meta, arg) => response.data,
+            //   async onQueryStarted({ id, ...patch }: any, { dispatch, queryFulfilled }: any) {
+            //     const patchResult = dispatch(
+            //       propertyAPI.util.updateQueryData('getCompany', id, (draft: any) => {
+            //         Object.assign(draft, patch)
+            //       })
+            //     )
+            //     try {
+            //       await queryFulfilled
+            //     } catch {
+            //       patchResult.undo()
+            //     }
+            //   },
+            //    invalidatesTags:  (result: any, error: any, {id}: any) => [{ type: 'Companies', id: 'LIST'  }],
+            //  }),
+
+             updateCompany: builder.mutation<CompanyModel, Partial<CompanyModel> & Pick<CompanyModel, 'id'>>({
+              query: ({id, ...patch}: any) => ({
                 url: `/companies/${id}`,
                 method: 'PATCH',
-                body,  
-                }
-               },
-              //  transformResponse: (response: { data: CompanyModel }, meta, arg) => response.data,
-              async onQueryStarted({ id, ...patch }: any, { dispatch, queryFulfilled }: any) {
-                const patchResult = dispatch(
-                  propertyAPI.util.updateQueryData('getCompany', id, (draft: any) => {
-                    Object.assign(draft, patch)
-                  })
-                )
-                try {
-                  await queryFulfilled
-                } catch {
-                  patchResult.undo()
-                }
-              },
-               invalidatesTags:  (result: any, error: any, {id}: any) => [{ type: 'Companies', id: 'LIST'  }],
+                body: patch,  
+               }),
+                 transformResponse: (response: { data: CompanyModel }, meta: any, arg: any) => response.data,
+                 transformErrorResponse: (
+                  response: { status: string | number },
+                  meta: any,
+                  arg: any
+                ) => response.status,
+                invalidatesTags:  (result: any, error: any, {id}: any) => [{ type: 'Companies', id: 'LIST'  }],
+                async onQueryStarted(
+                  arg: any,
+                  { dispatch, getState, queryFulfilled, requestId, extra, getCacheEntry }: any
+                ) {},
              }),
+      
       
              deleteCompany: builder.mutation<{ success: boolean; id: number }, number>({
               query(id: any) {

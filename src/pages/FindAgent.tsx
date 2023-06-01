@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { selectCurrentAgent, setAgents } from '../services/features/agentSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { useGetAgentsQuery, useGetCompaniesQuery } from '../services/api/propertyAPI';
+import { useGetAgentsQuery, useGetCompaniesQuery, useGetPropertiesQuery } from '../services/api/propertyAPI';
 import { Grid } from '@mui/material';
 import { selectCurrentCompany, setCompanies } from '../services/features/companySlice';
 
@@ -161,6 +161,7 @@ const Number = styled.p`
 margin: 0;
 font-size: 0.8rem;
 color: #494949;
+text-align: center;
 `
 const ForRent = styled.p`
 margin: 0;
@@ -223,6 +224,9 @@ function FindAgent() {
   const [searchData, setSearchData] = useState({agent: '', company: ''})
   const {data} = useGetAgentsQuery();
   const {data: companyData} = useGetCompaniesQuery();
+  const {data: allProperiesData}= useGetPropertiesQuery();
+
+  //console.log(allProperiesData?.data?.filter((i:any) => (i.creator === "63860ef00c6a4aad7f80df5c")).filter((i:any) => (i.category === 'sale')).length)
 
   useEffect(() => {
     dispatch(setAgents({
@@ -230,12 +234,13 @@ function FindAgent() {
       agentToken: undefined
     }))
      },[dispatch, data])
+
      useEffect(() => {
       dispatch(setCompanies({
         company: companyData,
         companyToken: undefined
       }))
-       },[dispatch, data])
+       },[dispatch, companyData])
 
   const {agent} = useAppSelector(selectCurrentAgent);
   const {company} = useAppSelector(selectCurrentCompany);
@@ -246,6 +251,10 @@ function FindAgent() {
   setSearchData( values => ({...values, [name]: value}));
   };
 
+    {/* @ts-ignore:next-line */}
+  //const allAgentProperties = allProperiesData?.data?.filyer((props: any) => props.id === agent?.data?._id)
+
+console.log(company)
   const handleSearch = () => {
   // e.preventDefault();
   }
@@ -300,11 +309,13 @@ function FindAgent() {
        <Organisation>{item.companyName}</Organisation> 
        <LowerContainer>
        <Lowerleft>
-        <Number>10</Number>
+         {/* @ts-ignore:next-line */}
+        <Number>{ allProperiesData?.data.filter((prop: any) => (prop.creator === item._id)).filter((prop:any) => (prop.category === 'sale')).length}</Number>
        <ForSale>for sale</ForSale>
        </Lowerleft>
        <LowerRight>
-       <Number>25</Number>
+          {/* @ts-ignore:next-line */}
+       <Number>{allProperiesData?.data.filter((prop: any) => (prop.creator === item._id)).filter((prop:any) => (prop.category === 'rent')).length}</Number>
        <ForRent>for rent</ForRent>
        </LowerRight>
        </LowerContainer>
@@ -313,7 +324,7 @@ function FindAgent() {
        </Grid>
       ))}
       </>
-      :
+        :       
         <>
         {/* @ts-ignore:next-line */}
         {company?.data?.map((item: any) => (  
@@ -324,20 +335,24 @@ function FindAgent() {
        </CompanyTopContainer>
        <CompanyBottomContainer>
        <CompanyName>{item.companyName}</CompanyName>
-       <NumOfAgent>15 AGENTS</NumOfAgent>
-       <HeadOffice>HEAD OFFICE</HeadOffice> 
+        {/* @ts-ignore:next-line */}
+       <NumOfAgent>{agent?.data?.filter((data: any) => (data.companyId === item._id)).length} AGENTS</NumOfAgent>
+       <HeadOffice>{item.address}</HeadOffice> 
        <Location>{item.area.toUpperCase()}</Location> 
        <LowerContainer>
        <Lowerleft>
-        <Number>23</Number>
+           {/* @ts-ignore:next-line */}
+        <Number>{allProperiesData?.data.filter((prop: any) => (prop.companyId === item._id)).filter((prop:any) => (prop.category === 'sale')).length}</Number>
        <ForSale>for sale</ForSale>
        </Lowerleft>
        <LowerMiddle>
-       <Number>8</Number>
+           {/* @ts-ignore:next-line */}
+       <Number>{allProperiesData?.data.filter((prop: any) => (prop.companyId === item._id)).filter((prop:any) => (prop.category === 'commercial')).length}</Number>
        <Commercial>Commercial</Commercial>
        </LowerMiddle>
        <LowerRight>
-       <Number>40</Number>
+           {/* @ts-ignore:next-line */}
+       <Number>{allProperiesData?.data.filter((prop: any) => (prop.companyId === item._id)).filter((prop:any) => (prop.category === 'rent')).length}</Number>
        <ForRent>for rent</ForRent>
        </LowerRight>
        </LowerContainer>
