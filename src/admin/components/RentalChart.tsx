@@ -10,7 +10,6 @@ function RentalChart() {
   const {data} = useGetPropertiesQuery();
 
   const {company} = useAppSelector(selectCurrentCompany);
-  console.log(data, company)
 
   const option = {
     tooltip: {
