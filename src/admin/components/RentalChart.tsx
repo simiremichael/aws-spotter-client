@@ -1,7 +1,18 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react';
+import { useGetPropertiesQuery } from '../../services/api/propertyAPI';
+import { useAppSelector } from '../../app/hooks';
+import { selectCurrentCompany } from '../../services/features/companySlice';
 
-const option = {
+
+function RentalChart() {
+
+  const {data} = useGetPropertiesQuery();
+
+  const {company} = useAppSelector(selectCurrentCompany);
+  console.log(data, company)
+
+  const option = {
     tooltip: {
       trigger: 'item'
     },
@@ -29,15 +40,16 @@ const option = {
         labelLine: {
           show: false
         },
-        data: [
-            { value: 1048, name: 'Total properties' },
+        
+        data: [ 
+          {/* @ts-ignore:next-line */},
+          { value: data?.data?.filter((dat: any) => {dat.companyid === company.data._id}), name: 'Total properties'},
             { value: 620, name: 'For rent' },
         ]
       }
     ]
   };
 
-function RentalChart() {
   return (
     <div>
     <ReactECharts option={option} />
