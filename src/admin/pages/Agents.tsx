@@ -210,7 +210,7 @@ function Agents() {
             <Th>Gender</Th>
             <Th>Mobile</Th>
             <Th>Email</Th>
-            <Th>property No.</Th>
+            <Th>properties</Th>
             <Th>Action</Th>
          </Tr>
          </Thead>
