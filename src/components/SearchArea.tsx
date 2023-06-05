@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper';
 import { selectCurrentPropertySearch, setPropertySearch } from '../services/features/propertySearchSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import useDebounce from '../debounce/useDebounce';
+import MenuItem from '@mui/material/MenuItem';
 
 const StyledBox = styled(Box)`
 justify-content: center;
@@ -675,7 +676,8 @@ const debounceSearch = searchData.search
    const handleChange = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
-    setSearchData({...searchData, [name]: value});
+    setSearchData( values => ({...values, [name]: value}));
+   // setSearchData( values => ({...values, [name]: value}));
      }
  
      const handleDuration = (e: any) => {
@@ -737,44 +739,44 @@ useEffect(() => {
           autoWidth
           onChange={handleChange}
         >
-           <Option value='lagos'>Lagos</Option>
-          <Option value='abuja'>Abuja</Option>
-          <Option value='ogun'>Ogun</Option>
-          <Option value='rivers'>Rivers</Option>
-          <Option value='oyo'>Oyo</Option>
-          <Option value='ekiti'>Ekiti</Option>
-          <Option value='ondo'>Ondo</Option>
-          <Option value='edo'>Edo</Option>
-          <Option value='delta'>Delta</Option>
-          <Option value='akwa ibom'>Akwa Ibom</Option>
-          <Option value='abia'>Abia</Option>
-          <Option value='kogi'>Kogi</Option>
-          <Option value='bayelsa'>Bayelsa</Option>
-          <Option value='benue'>Benue</Option>
-          <Option value='kaduna'>Kaduna</Option>
-          <Option value='kanu'>Kanu</Option>
-          <Option value='katsina'>Katsina</Option>
-          <Option value='yobe'>Yobe</Option>
-          <Option value='cross river'>Cross River</Option>
-          <Option value='taraba'>Taraba</Option>
-          <Option value='nasarawa'>Nasarawa</Option>
-          <Option value='imo'>Imo</Option>
-          <Option value='enugu'>Enugu</Option>
-          <Option value='kwara'>Kwara</Option>
-          <Option value='kebbi'>Kebbi</Option>
-          <Option value='adamawa'>Adamawa</Option>
-          <Option value='bauchi'>Bauchi</Option>
-          <Option value='jigawa'>Jigawa</Option>
-          <Option value='anambra'>Anambra</Option>
-          <Option value='osun'>Osun</Option>
-          <Option value='niger'>Niger</Option>
-          <Option value='bornu'>Bornu</Option>
-          <Option value='ebonyi'>Ebonyi</Option>
-          <Option value='ekiti'>Ekiti</Option>
-          <Option value='zanfara'>Zanfara</Option>
-          <Option value='gombe'>Gombe</Option>
-          <Option value='bayelsa'>Bayelsa</Option>
-          <Option value='rivers'>Rivers</Option>
+           <MenuItem value='lagos'>Lagos</MenuItem>
+          <MenuItem value='abuja'>Abuja</MenuItem>
+          <MenuItem value='ogun'>Ogun</MenuItem>
+          <MenuItem value='rivers'>Rivers</MenuItem>
+          <MenuItem value='oyo'>Oyo</MenuItem>
+          <MenuItem value='ekiti'>Ekiti</MenuItem>
+          <MenuItem value='ondo'>Ondo</MenuItem>
+          <MenuItem value='edo'>Edo</MenuItem>
+          <MenuItem value='delta'>Delta</MenuItem>
+          <MenuItem value='akwa ibom'>Akwa Ibom</MenuItem>
+          <MenuItem value='abia'>Abia</MenuItem>
+          <MenuItem value='kogi'>Kogi</MenuItem>
+          <MenuItem value='bayelsa'>Bayelsa</MenuItem>
+          <MenuItem value='benue'>Benue</MenuItem>
+          <MenuItem value='kaduna'>Kaduna</MenuItem>
+          <MenuItem value='kanu'>Kanu</MenuItem>
+          <MenuItem value='katsina'>Katsina</MenuItem>
+          <MenuItem value='yobe'>Yobe</MenuItem>
+          <MenuItem value='cross river'>Cross River</MenuItem>
+          <MenuItem value='taraba'>Taraba</MenuItem>
+          <MenuItem value='nasarawa'>Nasarawa</MenuItem>
+          <MenuItem value='imo'>Imo</MenuItem>
+          <MenuItem value='enugu'>Enugu</MenuItem>
+          <MenuItem value='kwara'>Kwara</MenuItem>
+          <MenuItem value='kebbi'>Kebbi</MenuItem>
+          <MenuItem value='adamawa'>Adamawa</MenuItem>
+          <MenuItem value='bauchi'>Bauchi</MenuItem>
+          <MenuItem value='jigawa'>Jigawa</MenuItem>
+          <MenuItem value='anambra'>Anambra</MenuItem>
+          <MenuItem value='osun'>Osun</MenuItem>
+          <MenuItem value='niger'>Niger</MenuItem>
+          <MenuItem value='bornu'>Bornu</MenuItem>
+          <MenuItem value='ebonyi'>Ebonyi</MenuItem>
+          <MenuItem value='ekiti'>Ekiti</MenuItem>
+          <MenuItem value='zanfara'>Zanfara</MenuItem>
+          <MenuItem value='gombe'>Gombe</MenuItem>
+          <MenuItem value='bayelsa'>Bayelsa</MenuItem>
+          <MenuItem value='rivers'>Rivers</MenuItem>
         </Select> 
         </FormControl>
         </Grid>
