@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM node:18
 
 # Create app directory
 WORKDIR /app
@@ -9,4 +9,4 @@ RUN npm install
 
 EXPOSE 3000
 
-# CMD [ "npm", "start"]
+CMD [ "npm", "start"]
