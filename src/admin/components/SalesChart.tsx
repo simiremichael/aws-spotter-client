@@ -10,6 +10,13 @@ function SalesChart() {
 
   const {company} = useAppSelector(selectCurrentCompany);
 
+   {/* @ts-ignore:next-line */}
+  const allProperties = data?.data?.filter((dat: any) => dat.companyId === company?.result._id).length
+
+   {/* @ts-ignore:next-line */}
+  const forSale = data?.data?.filter((dat: any) => dat.companyId === company?.result?._id).filter((dat:any) => dat.category === 'sale').length
+
+
   const option = {
     tooltip: {
       trigger: 'item'
@@ -39,10 +46,8 @@ function SalesChart() {
           show: true
         },
         data: [
-          {/* @ts-ignore:next-line */},
-          { value: data?.data?.filter((dat: any) => {dat.companyid === company?.data?._id}), name: 'Total properties'},
-          {/* @ts-ignore:next-line */},
-          { value: data?.data?.filter((dat: any) => {dat.companyid === company?.data?._id}).filter((dat:any) => {dat.category === 'rent'}), name: 'For sale' },
+          { value: allProperties, name: 'Total properties'},
+          { value: forSale, name: 'For sale' },
         
         ]
       }

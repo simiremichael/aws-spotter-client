@@ -9,7 +9,7 @@ import {Link, useNavigate} from "react-router-dom";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import Avatar from '@mui/material/Avatar';
-import { useDeleteAgentMutation, useGetAgentCompanyQuery, useGetPropertiesByAgentQuery, useUpdateAgentMutation } from '../../services/api/propertyAPI';
+import { useDeleteAgentMutation, useGetAgentCompanyQuery, useGetPropertiesByAgentQuery, useGetPropertiesQuery, useUpdateAgentMutation } from '../../services/api/propertyAPI';
 import { selectCurrentCompany } from '../../services/features/companySlice';
 import { useAppSelector } from '../../app/hooks';
 
@@ -165,7 +165,12 @@ function Agents() {
     {/* @ts-ignore:next-line */}
      const agentId = data?.filter((item: any) => item._id);
     const { data: agentData, error} = useGetPropertiesByAgentQuery(agentId, {refetchOnMountOrArgChange: true });
-    const [deleteAgent] = useDeleteAgentMutation();
+    const [deleteAgent] = useDeleteAgentMutation();      
+    const {data: agentProp} = useGetPropertiesQuery();
+{/* @ts-ignore:next-line */}
+    const agentProperties = agentProp?.data?.filter((dat: any) => dat.creator).map((i:any) => i === agentId).length
+
+     console.log(agentProperties, agentData, data, agentId);
   
   return (
     <StyledBox>
@@ -221,8 +226,8 @@ function Agents() {
             <Td>Male</Td>
             <Td>{result.phone}</Td>
             <Td>{result.email}</Td>
-            {/* @ts-ignore:next-line */}
-            <Td>{agentData?.length}</Td>
+               {/* @ts-ignore:next-line */}
+            <Td>{agentProp?.data?.filter((dat: any) => dat.creator === result._id).length}</Td>
             <Td><ActionContaner>
             <StyledLink to={`/adminHomepage/registerAgent/${result._id}`}>
                 <EditContainer>

@@ -10,6 +10,13 @@ function RentalChart() {
 
   const {company} = useAppSelector(selectCurrentCompany);
 
+    {/* @ts-ignore:next-line */}
+    const allProperties = data?.data?.filter((dat: any) => dat.companyId === company?.result._id).length
+
+    {/* @ts-ignore:next-line */}
+   const forRent = data?.data?.filter((dat: any) => dat.companyId === company?.result?._id).filter((dat:any) => dat.category === 'rent').length
+ 
+
   const option = {
     tooltip: {
       trigger: 'item'
@@ -40,10 +47,9 @@ function RentalChart() {
         },
         
         data: [ 
-          {/* @ts-ignore:next-line */},
-          { value: data?.data?.filter((dat: any) => {dat.companyid === company?.data?._id}), name: 'Total properties'},
-          {/* @ts-ignore:next-line */},
-          { value: data?.data?.filter((dat: any) => {dat.companyid === company?.data?._id}).filter((dat:any) => {dat.category === 'rent'}), name: 'For rent' },
+          { value: allProperties, name: 'Total properties'},
+
+          { value: forRent, name: 'For rent' },
         ]
       }
     ]

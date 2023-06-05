@@ -5,7 +5,7 @@ import { setUsers, logoutUsers } from '../features/userSlice';
 import { setCompanies, companyLogout } from '../features/companySlice';
 //'http://13.245.161.92/api'
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000', 
+  baseUrl: 'http://localhost:5000/api', 
   credentials: "include",
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
