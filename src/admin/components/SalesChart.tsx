@@ -1,7 +1,16 @@
 import React from 'react'
 import ReactECharts from 'echarts-for-react';
+import { useGetPropertiesQuery } from '../../services/api/propertyAPI';
+import { useAppSelector } from '../../app/hooks';
+import { selectCurrentCompany } from '../../services/features/companySlice';
+  
+function SalesChart() {
 
-const option = {
+  const {data} = useGetPropertiesQuery();
+
+  const {company} = useAppSelector(selectCurrentCompany);
+
+  const option = {
     tooltip: {
       trigger: 'item'
     },
@@ -30,15 +39,16 @@ const option = {
           show: true
         },
         data: [
-          { value: 1048, name: 'Total properties' },
-          { value: 428, name: 'For sale' },
+          {/* @ts-ignore:next-line */},
+          { value: data?.data?.filter((dat: any) => {dat.companyid === company?.data?._id}), name: 'Total properties'},
+          {/* @ts-ignore:next-line */},
+          { value: data?.data?.filter((dat: any) => {dat.companyid === company?.data?._id}).filter((dat:any) => {dat.category === 'rent'}), name: 'For sale' },
+        
         ]
       }
     ]
   };
 
-  
-function SalesChart() {
   return (
     <div>
     <ReactECharts option={option} />
