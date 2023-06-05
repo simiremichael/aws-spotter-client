@@ -4,7 +4,6 @@ import { useGetPropertiesQuery } from '../../services/api/propertyAPI';
 import { useAppSelector } from '../../app/hooks';
 import { selectCurrentCompany } from '../../services/features/companySlice';
 
-
 function RentalChart() {
 
   const {data} = useGetPropertiesQuery();
