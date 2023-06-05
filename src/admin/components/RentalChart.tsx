@@ -44,7 +44,7 @@ function RentalChart() {
         data: [ 
           {/* @ts-ignore:next-line */},
           { value: data?.data?.filter((dat: any) => {dat.companyid === company.data._id}), name: 'Total properties'},
-            { value: 620, name: 'For rent' },
+            { value: data?.data?.filter((dat: any) => {dat.companyid === company.data._id}).filter((dat:any) => {dat.category === 'rent'}), name: 'For rent' },
         ]
       }
     ]
