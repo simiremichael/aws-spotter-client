@@ -15,6 +15,7 @@ import ArrowBackIosNewSharpIcon from '@mui/icons-material/ArrowBackIosNewSharp';
 import { setCompanies } from '../services/features/companySlice';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Backdrop, CircularProgress, LinearProgress } from '@mui/material';
+import Modal from '@mui/material/Modal';
 
 
 const StyledBox = styled(Box)`
@@ -167,19 +168,37 @@ width: 80px;
  color: red;
  font-size: 0.8rem;
  `
-//  const UploadBtn = styled.button`
-// width: 80px;
-// height: auto;
-// margin: 5px 0;
-// padding-top: 2px;
-// padding-bottom: 2px;
-// color: #fff;
-// background: #008080;
-// border: none;
-// outline: none;
-// border-radius: 5px;
-// cursor: pointer;
-// `
+ const ContactContainer = styled.div`
+ width: 60%;
+ background-color: #008080;
+ color: #c4c4c4;
+ height: 15%;
+ margin: auto auto;
+ border-radius: 1rem;
+ display: flex;
+ flex-direction: column;
+ padding: 1rem;
+ a {
+   color: white;
+   text-decoration: none;
+ }
+
+   margin-bottom: 2rem;
+`;
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '100%',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 
 function ClientLogin() {
   
@@ -375,10 +394,38 @@ const handleResetPassword = () => {
        })
       }
 
+      const [open, setOpen] = useState(false);
+      const handleOpen = () => {
+        setOpen(true);
+      };
+      const handleClose = () => {
+        setOpen(false);
+      };
+
   return (
     <StyledBox>
       <StyledContainer>
       <FormContainer>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box sx={{ ...style, maxWidth: 600, paddingLeft: '20px', paddingRight: '5px' }}>
+          <h2 style={{fontSize: '1.5rem', textAlign: 'center'}}>How to Register your company and agents</h2>
+          <p style={{ fontSize: '0.8rem', fontWeight: 'bold', marginLeft: '5px', marginRight: '8px'}}>Please Note That you must create company account first before you can register your agents. Only company account can be created on this page.</p>
+          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>1. Create company account: Click create account and enter Company details and submit</p>
+          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>2. Login: Login to your company account as admin.</p>
+          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>3. Register Agent: From the Company dashboard, click add agent to register all your agents.</p>
+          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>4. Agent Login: The email and password created by the admin for the agent can now be used by the agent to login on this page (admin/agent login page).</p>
+          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>5. Upload Properties: Once the agent successfully login, He or She can post all their properties from the CRM.</p>
+          <ContactContainer>
+          <span>Having troubles?</span>
+          <a href='mailto:sales@residencespotter.com'>Contact us: </a>
+        </ContactContainer>
+        </Box>
+      </Modal>
         <Form onSubmit={handleSubmit}>
           {/* { !switchForm ? 
           <> */}
@@ -397,7 +444,8 @@ const handleResetPassword = () => {
           <BtnInput type='radio' name='role' id='admin' />
           <Label htmlFor='admin' onClick={handleAdmin}>Admin</Label>
           <BtnInput type='radio' name='role' id='agent' value='Agent' defaultChecked  />
-          <Label htmlFor='agent' onClick={handleAgent}>Agent</Label>  
+          <Label htmlFor='agent' onClick={handleAgent}>Agent</Label> 
+          <Button onClick={handleOpen} style={{width: '120px', backgroundColor: 'white', color: '#008080', marginLeft: '30%'}}>How it works</Button> 
           </TopContainer>
         <TextField id="outlined-basic" type='email' name='email' label="Email" value={loginFormData.email} variant="outlined" size='small' fullWidth onChange={handleChange} />
         <TextField style={{marginTop: 15}} id="outlined-basic" type='password' value={loginFormData.password} name='password' label="Password" variant="outlined" size='small' fullWidth onChange={handleChange} />
