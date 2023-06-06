@@ -415,7 +415,7 @@ const handleResetPassword = () => {
         <Box sx={{ ...style, maxWidth: 600, paddingLeft: '20px', paddingRight: '5px' }}>
           <h2 style={{fontSize: '1.5rem', textAlign: 'center'}}>How to Register your company and agents</h2>
           <p style={{ fontSize: '0.8rem', fontWeight: 'bold', marginLeft: '5px', marginRight: '8px'}}>Please Note That you must create company account first before you can register your agents. Only company account can be created on this page.</p>
-          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>1. Create company account: Click create account and enter Company details and submit</p>
+          <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>1. Create company account: Scroll to the bottom of the page and click (login as admin/agent). thereafter, Click create account and enter Company details and submit</p>
           <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>2. Login: Login to your company account as admin.</p>
           <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>3. Register Agent: From the Company dashboard, click add agent to register all your agents.</p>
           <p style={{fontSize: '0.9rem', marginLeft: '5px', marginRight: '8px'}}>4. Agent Login: The email and password created by the admin for the agent can now be used by the agent to login on this page (admin/agent login page).</p>
