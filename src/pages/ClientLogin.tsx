@@ -445,7 +445,7 @@ const handleResetPassword = () => {
           <Label htmlFor='admin' onClick={handleAdmin}>Admin</Label>
           <BtnInput type='radio' name='role' id='agent' value='Agent' defaultChecked  />
           <Label htmlFor='agent' onClick={handleAgent}>Agent</Label> 
-          <Button onClick={handleOpen} style={{width: '120px', backgroundColor: 'white', color: '#008080', marginLeft: '30%'}}>How it works</Button> 
+          <Button onClick={handleOpen} style={{width: '120px', backgroundColor: 'white', color: '#008080', marginLeft: '25%'}}>How it works</Button> 
           </TopContainer>
         <TextField id="outlined-basic" type='email' name='email' label="Email" value={loginFormData.email} variant="outlined" size='small' fullWidth onChange={handleChange} />
         <TextField style={{marginTop: 15}} id="outlined-basic" type='password' value={loginFormData.password} name='password' label="Password" variant="outlined" size='small' fullWidth onChange={handleChange} />

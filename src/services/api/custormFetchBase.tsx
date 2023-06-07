@@ -3,9 +3,9 @@ import { RootState } from '../../app/store';
   import { setAgents, logout } from '../features/agentSlice';
 import { setUsers, logoutUsers } from '../features/userSlice';
 import { setCompanies, companyLogout } from '../features/companySlice';
-//'http://13.245.161.92/api'
+//  process.env.REACT_APP_SERVER_URL
 const baseQuery = fetchBaseQuery({
-  baseUrl:  process.env.REACT_APP_SERVER_URL || 'http://localhost:5000/api', 
+  baseUrl: 'http://localhost:5000/api', 
   credentials: "include",
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
