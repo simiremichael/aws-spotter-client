@@ -378,7 +378,7 @@ const handleResetPassword = () => {
     const files = e.target.files
      const formData = new FormData();
      formData.append('picture', files[0]);
-    await fetch('http://localhost:5000/api/companies/upload', {
+    await fetch('https://residencespotter-server.casa/api/companies/upload', {
      method: 'POST',
      body: formData,
    })

@@ -150,7 +150,7 @@ const handleUpload = async (e: any) => {
   const files = e.target.files
    const formData = new FormData();
    formData.append('picture', files[0]);
-  await fetch('http://localhost:5000/api/agents/upload', {
+  await fetch('https://residencespotter-server.casa/api/agents/upload', {
    method: 'POST',
    body: formData,
  })

@@ -496,7 +496,7 @@ const handleUpload = async (e: any) => {
   const files = e.target.files
    const formData = new FormData();
    formData.append('picture', files[0]);
-  await fetch('http://localhost:5000/api/users/upload', {
+  await fetch('https://residencespotter-server.casa/api/users/upload', {
    method: 'POST',
    body: formData,
  })
@@ -652,7 +652,7 @@ const handleCloseUserMenu = () => {
         <Div id='signinDiv'>Log in with google</Div>
         <GoogleContainer>
            {/* @ts-ignore:next-line */}
-        <GoogleOAuthProvider clientId="771408852902-tgtge00svjkijjre2e3279b2pt7r2nfa.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOFLE_OAUTH}>
           <GoogleLogin
           onSuccess={googleSuccess}
           onError={googleFailure}

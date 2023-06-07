@@ -279,7 +279,7 @@ const handleUpload1 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
    formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', { 
+  await fetch('https://residencespotter-server.casa/api/properties/upload', { 
     method: 'POST', 
     body: formData
  })
@@ -299,7 +299,7 @@ const handleUpload1 = async (e: any) => {
      formData.append('picture', files[0]);
       {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-    await fetch('http://localhost:5000/api/properties/upload', {
+    await fetch('https://residencespotter-server.casa/api/properties/upload', {
      method: 'POST',
      body: formData,
    })
@@ -319,7 +319,7 @@ const handleUpload3 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -339,7 +339,7 @@ const handleUpload4 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -359,7 +359,7 @@ const handleUpload5 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -379,7 +379,7 @@ const handleUpload6 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -399,7 +399,7 @@ const handleUpload7 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -419,7 +419,7 @@ const handleUpload8 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -439,7 +439,7 @@ const handleUpload9 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -459,7 +459,7 @@ const handleUpload10 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -479,7 +479,7 @@ const handleUpload11 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
@@ -500,7 +500,7 @@ const handleUpload12 = async (e: any) => {
    formData.append('picture', files[0]);
     {/* @ts-ignore:next-line */}
     formData.append('id', agent?.result?._id);
-  await fetch('http://localhost:5000/api/properties/upload', {
+  await fetch('https://residencespotter-server.casa/api/properties/upload', {
    method: 'POST',
    body: formData,
  })
