@@ -673,6 +673,7 @@ const handleCloseUserMenu = () => {
                  {isSignup ? "Sign In" : "Create account" }
                  </strong></SwitchButton>
              </SwitchContainer>
+             <Button onClick={() => navigate('/client-login')} style={{color: 'white'}}>Register your Company/agents</Button>
         </InnerFormContainer>
       </Forms>
         )} 
