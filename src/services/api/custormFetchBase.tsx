@@ -5,7 +5,7 @@ import { setUsers, logoutUsers } from '../features/userSlice';
 import { setCompanies, companyLogout } from '../features/companySlice';
 //  process.env.REACT_APP_SERVER_URL
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000/api', 
+  baseUrl: process.env.REACT_APP_SERVER_URL || 'http://localhost:5000/api', 
   credentials: "include",
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
