@@ -7,7 +7,6 @@ import { setCompanies, companyLogout } from '../features/companySlice';
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_SERVER_URL, 
   credentials: "include",
-  headers: {"Access-Control-Allow-Headers": "*"},
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
     const agentToken = ( getState() as RootState).agentState.agentToken
