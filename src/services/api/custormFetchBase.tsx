@@ -3,9 +3,9 @@ import { RootState } from '../../app/store';
   import { setAgents, logout } from '../features/agentSlice';
 import { setUsers, logoutUsers } from '../features/userSlice';
 import { setCompanies, companyLogout } from '../features/companySlice';
-//  process.env.REACT_APP_SERVER_URL
+//'https://server-api-knl6.onrender.com'  'http://13.244.166.5/api'
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_SERVER_URL, 
+  baseUrl: process.env.REACT_APP_SERVER_URL,
   credentials: "include",
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
