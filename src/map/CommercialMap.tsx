@@ -45,8 +45,8 @@ function BuyMap() {
       style={{width: '100%', 
       height: '100vh',
        }}
-       mapStyle='mapbox://styles/mapbox/streets-v12'
-    // mapStyle="mapbox://styles/simiremichael/clcz22d6e00l814qni4m9qxaq"
+      //  mapStyle='mapbox://styles/mapbox/streets-v12'
+       mapStyle='mapbox://styles/simiremichael/clcz22d6e00l814qni4m9qxaq'
     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
     onMove={(nextViewPort: any) => setViewState(nextViewPort)}
     >
