@@ -6,7 +6,7 @@ import { setCompanies, companyLogout } from '../features/companySlice';
 //'https://server-api-knl6.onrender.com'  'http://13.244.166.5/api'
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_SERVER_URL,
-  credentials: "include",
+  credentials: "include", 
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
     const agentToken = ( getState() as RootState).agentState.agentToken
