@@ -7,6 +7,7 @@ import { setCompanies, companyLogout } from '../features/companySlice';
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_SERVER_URL, 
   credentials: "include",
+  headers: {'Access-Control-Allow-Origin': 'https://main.d31maya3ht9jgz.amplifyapp.com'},
   //headers: {'content-type': 'multipart/form-data'},
   prepareHeaders: (headers, { getState }) => {
     const agentToken = ( getState() as RootState).agentState.agentToken
