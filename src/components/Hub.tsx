@@ -134,12 +134,12 @@ function Hub() {
          </Grid>
          <Grid item lg={6} xs={12} sm={12} md={6}>
         <InnerContainer2>
-        {/* <Video src='https://res.cloudinary.com/do2u3zzko/video/upload/v1680080522/tour/Video_Tour_veyjul.mp4' autoPlay loop muted /> */}
+        <Video src='https://res.cloudinary.com/do2u3zzko/video/upload/v1680080522/tour/Video_Tour_veyjul.mp4' autoPlay loop muted />
         <TextDiv>
          <GradTitle>Explore your future home with detail videos</GradTitle>
          <AgentListing>View your dream home online</AgentListing>
          <AnimationContainer>
-         <Button><strong>View Now</strong></Button>
+         <Button><strong>Coming Soon</strong></Button>
          {/* <Animate src='../images/animate2.svg' /> */}
 
          </AnimationContainer>
