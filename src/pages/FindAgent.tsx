@@ -254,7 +254,6 @@ function FindAgent() {
     {/* @ts-ignore:next-line */}
   //const allAgentProperties = allProperiesData?.data?.filyer((props: any) => props.id === agent?.data?._id)
 
-console.log(company)
   const handleSearch = () => {
   // e.preventDefault();
   }
