@@ -670,10 +670,10 @@ const handleCloseUserMenu = () => {
         <SwitchContainer>
           <SwitchP>{isSignup ?"Already have an account": "Don't have an account "}</SwitchP>
         <SwitchButton type='button' onClick={switchMode}><strong>
-                 {isSignup ? "Sign In" : "Create account" }
+                 {isSignup ? "Sign In" : "Sign Up" }
                  </strong></SwitchButton>
              </SwitchContainer>
-             <Button onClick={() => navigate('/client-login')} style={{color: 'white', marginTop: '15px', fontSize: '0.8rem'}}>Create Company/agents account</Button>
+             <Button onClick={() => navigate('/client-login')} style={{color: 'white', marginTop: '15px', fontSize: '0.8rem'}}>Create Company/Agents Account</Button>
         </InnerFormContainer>
       </Forms>
         )} 
