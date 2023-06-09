@@ -384,7 +384,6 @@ const handleResetPassword = () => {
    })
    .then(r => r.json())
    .then(data => {
-    console.log(data);
     setAdminFormData({...adminFormData, logo: data.url});
     //setUserFormData({...userFormData, picture: data.url});
        if (data) {
