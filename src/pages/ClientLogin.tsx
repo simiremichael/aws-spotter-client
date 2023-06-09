@@ -570,7 +570,7 @@ const handleResetPassword = () => {
 <SwitchContainer>
           <SwitchP>{isSignup ?"Already have an account": "Don't have an account "}</SwitchP>
         <SwitchButton type='button' onClick={switchMode}><strong>
-                 {isSignup ? "Sign In" : "Create account" }
+                 {isSignup ? "Sign In" : "Create company account" }
                  </strong></SwitchButton>
              </SwitchContainer>
         </Form>
