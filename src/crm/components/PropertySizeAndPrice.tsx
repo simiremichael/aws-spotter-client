@@ -184,15 +184,15 @@ function PropertySizeAndPrice(props: {updateProperty: any, property: any, setPro
     <Grid container>
     <Grid item lg={3} md={3} sm={12} xs={12}>
      <ItmesContainer>
-      <Items><PropertyTypeLink to='/agentproperties/propertyType'>Property type</PropertyTypeLink></Items>
-      <Items><PropertyTypeLink to='/agentproperties/location'>Location</PropertyTypeLink></Items>
-      <Items><PropertyTypeLink to='/agentproperties/propertySizeAndPrice'><strong>Property size and Price</strong></PropertyTypeLink></Items>
-      <Items><PropertyTypeLink to='/agentproperties/description'>Description</PropertyTypeLink></Items>
-      <Items><PropertyTypeLink to='/agentproperties/photos'>Photos </PropertyTypeLink></Items>
-      <Items><PropertyTypeLink to='/agentproperties/videoAnd3Dtours'>Video & 3D tours</PropertyTypeLink></Items>
-      <Items><PropertyTypeLink to='/agentproperties/details'>Details</PropertyTypeLink></Items>
-       <Items><PropertyTypeLink to='/agentproperties/utilities'>Utilities</PropertyTypeLink></Items>
-       <Items><PropertyTypeLink to='/agentproperties/features'>Features</PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''>Property type</PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''>Location</PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''><strong>Property size and Price</strong></PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''>Description</PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''>Photos </PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''>Video & 3D tours</PropertyTypeLink></Items>
+      <Items><PropertyTypeLink to=''>Details</PropertyTypeLink></Items>
+       <Items><PropertyTypeLink to=''>Utilities</PropertyTypeLink></Items>
+       <Items><PropertyTypeLink to=''>Features</PropertyTypeLink></Items>
      </ItmesContainer>
     </Grid>
     <Grid item lg={9} md={9} sm={12} xs={12}>

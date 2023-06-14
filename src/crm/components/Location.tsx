@@ -14,7 +14,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-
+import { Loader } from "@googlemaps/js-api-loader"
 
 
 const StyledBox = styled(Box)`
@@ -167,6 +167,19 @@ function Location(props: { updateProperty: any, property: any, setProperty: any}
     debounce: 300,
   });
  
+  // const loader = new Loader({
+  //   apiKey: "AIzaSyCC1JhVqHUe1VqIqLaEpvBqdx76VI7m10Q",
+  //   version: "weekly",
+
+  // });
+
+  // loader.load().then(async () => {
+  //   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  // //  let  map = new Map(document.getElementById("map") as HTMLElement, {
+  // //     center: { lat: -34.397, lng: 150.644 },
+  // //     zoom: 8,
+  // //   });
+  // });
 
  const handleInput = (e: any) => {
     // Update the keyword of the input element
@@ -227,15 +240,15 @@ function Location(props: { updateProperty: any, property: any, setProperty: any}
   <Grid container>
   <Grid item lg={3} md={3} sm={12} xs={12}>
    <ItmesContainer>
-    <Items><PropertyTypeLink to='/agentproperties/propertyType'>Property type</PropertyTypeLink></Items>
-    <Items><PropertyTypeLink to='/agentproperties/location'><strong>Location</strong></PropertyTypeLink></Items>
-    <Items><PropertyTypeLink to='/agentproperties/propertySizeAndPrice'>Property size and Price</PropertyTypeLink></Items>
-    <Items><PropertyTypeLink to='/agentproperties/description'>Description</PropertyTypeLink></Items>
-    <Items><PropertyTypeLink to='/agentproperties/photos'>Photos </PropertyTypeLink></Items>
-    <Items><PropertyTypeLink to='/agentproperties/videoAnd3Dtours'>Video & 3D tours</PropertyTypeLink></Items>
-    <Items><PropertyTypeLink to='/agentproperties/details'>Details</PropertyTypeLink></Items>
-       <Items><PropertyTypeLink to='/agentproperties/utilities'>Utilities</PropertyTypeLink></Items>
-       <Items><PropertyTypeLink to='/agentproperties/features'>Features</PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''>Property type</PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''><strong>Location</strong></PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''>Property size and Price</PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''>Description</PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''>Photos </PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''>Video & 3D tours</PropertyTypeLink></Items>
+    <Items><PropertyTypeLink to=''>Details</PropertyTypeLink></Items>
+       <Items><PropertyTypeLink to=''>Utilities</PropertyTypeLink></Items>
+       <Items><PropertyTypeLink to=''>Features</PropertyTypeLink></Items>
    </ItmesContainer>
   </Grid>
   <Grid item lg={9} md={9} sm={12} xs={12}>
