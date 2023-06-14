@@ -337,7 +337,7 @@ function DashBoard() {
         <CardIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"/></CardIcon>
        </CardAvatar>
       <CardInfo>You Do not have any records yet.</CardInfo>
-      <CardCreateButton>Create new</CardCreateButton>
+      <CardCreateButton onClick={() => navigate('/agentproperties/propertyType')}>Create new</CardCreateButton>
        </CardBottomContainer>
        </Card>
        </Grid>
@@ -367,7 +367,7 @@ function DashBoard() {
         <CardIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M411.4 175.5C417.4 185.4 417.5 197.7 411.8 207.8C406.2 217.8 395.5 223.1 384 223.1H192C180.5 223.1 169.8 217.8 164.2 207.8C158.5 197.7 158.6 185.4 164.6 175.5L260.6 15.54C266.3 5.897 276.8 0 288 0C299.2 0 309.7 5.898 315.4 15.54L411.4 175.5zM288 312C288 289.9 305.9 272 328 272H472C494.1 272 512 289.9 512 312V456C512 478.1 494.1 496 472 496H328C305.9 496 288 478.1 288 456V312zM0 384C0 313.3 57.31 256 128 256C198.7 256 256 313.3 256 384C256 454.7 198.7 512 128 512C57.31 512 0 454.7 0 384z"/></CardIcon>
        </CardAvatar>
       <CardInfo>You Do not have any records yet.</CardInfo>
-      <CardCreateButton>Create new</CardCreateButton>
+      <CardCreateButton onClick={() => navigate('/propertyScouting')}>Create new</CardCreateButton>
        </CardBottomContainer>
        </Card>
        </Grid>
@@ -414,7 +414,7 @@ function DashBoard() {
        <CardIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"/></CardIcon>
       </CardAvatar>
      <CardInfo>You Do not have any records yet.</CardInfo>
-     <CardCreateButton>Create new</CardCreateButton>
+     <CardCreateButton onClick={() => navigate('/event')}>Create new</CardCreateButton>
       </CardBottomContainer>
       </Card>
       </Grid>
