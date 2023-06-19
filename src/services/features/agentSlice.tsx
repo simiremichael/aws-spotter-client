@@ -22,7 +22,7 @@ export const agentSlice = createSlice({
   initialState,
   reducers: {
     setAgents: (state, action: PayloadAction<{agent:  undefined | string | AgentModel | null | [] | {}, agentToken: string | undefined | null | {} }>) => {
-      localStorage.setItem('my-property-finder-agent', JSON.stringify({
+      localStorage.setItem('residence-spotter-agent', JSON.stringify({
         agent: action.payload.agent,
         agentToken: action.payload.agentToken,
        })
@@ -31,7 +31,7 @@ export const agentSlice = createSlice({
        state.agentToken = action.payload.agentToken;
     },
     logout: (state) => {
-      localStorage.removeItem('my-property-finder-agent');
+      localStorage.removeItem('residence-spotter-agent');
       state.agent = null;
       state.agentToken = null;
     }

@@ -20,7 +20,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action: PayloadAction<{user:  undefined | string | UserModel | null, token: string | undefined | null | {} }>) => {
-      localStorage.setItem('my-property-finder-user', JSON.stringify({
+      localStorage.setItem('residence-spotter-user', JSON.stringify({
         user: action.payload.user,
         token: action.payload.token,
        })
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
        state.token = action.payload.token;
     },
     logoutUsers: (state) => {
-      localStorage.removeItem('my-property-finder-user');
+      localStorage.removeItem('residence-spotter-user');
       state.user = null;
       state.token = null;
     }

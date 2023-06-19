@@ -20,7 +20,7 @@ export const companySlice = createSlice({
   initialState,
   reducers: {
     setCompanies: (state, action: PayloadAction<{company:  undefined | string | CompanyModel | null | [] | {}, companyToken : string | undefined | null,}>) => {
-      localStorage.setItem('my-property-finder-company', JSON.stringify({
+      localStorage.setItem('residence-spotter-company', JSON.stringify({
         company: action.payload.company,
         companyToken : action.payload.companyToken ,
        })
@@ -29,7 +29,7 @@ export const companySlice = createSlice({
        state.companyToken  = action.payload.companyToken ;
     },
     companyLogout: (state) => {
-      localStorage.removeItem('my-property-finder-company');
+      localStorage.removeItem('residence-spotter-company');
       state.company = null;
       state.companyToken  = null;
     }
