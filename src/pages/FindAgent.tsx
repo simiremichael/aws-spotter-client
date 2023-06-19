@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { useGetAgentsQuery, useGetCompaniesQuery, useGetPropertiesQuery } from '../services/api/propertyAPI';
 import { Grid } from '@mui/material';
 import { selectCurrentCompany, setCompanies } from '../services/features/companySlice';
+import avatar from '../images/blank_avater.jpg'
 
 const StyledBox = styled(Box)`
 background-image: url('../images/realtor.webp');
@@ -300,7 +301,7 @@ function FindAgent() {
       <Grid item lg={3} md={4} sm={6} xs={12}key={item._id}>
       <AgentCard>
        <AgentTopContainer>
-       <Img src={item.profilePicture} />
+       <Img src={item.profilePicture ? item.profilePicture : avatar } />
        </AgentTopContainer>
        <BottomContainer>
        <Name>{item.name}</Name>
