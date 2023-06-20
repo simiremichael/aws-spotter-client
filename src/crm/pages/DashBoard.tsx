@@ -430,7 +430,7 @@ function DashBoard() {
       <Card>
       <CardTopContainer>
       <CardTitle>Events</CardTitle>
-      <CardButton>View All (0)</CardButton>
+      <CardButton onClick={() => navigate('/event')}>View All (0)</CardButton>
       </CardTopContainer>
       <CardBottomContainer>
        <CardAvatar>
@@ -477,7 +477,7 @@ function DashBoard() {
        <Card>
        <CardTopContainer>
        <CardTitle>Property Scouting</CardTitle>
-       <CardButton>View All (0)</CardButton>
+       <CardButton onClick={() => navigate('/propertyScouting')}>View All (0)</CardButton>
        </CardTopContainer>
        <CardBottomContainer>
         <CardAvatar>
