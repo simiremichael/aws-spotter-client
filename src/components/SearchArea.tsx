@@ -676,8 +676,7 @@ const debounceSearch = searchData.search
    const handleChange = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
-    setSearchData( values => ({...values, [name]: value}));
-   // setSearchData( values => ({...values, [name]: value}));
+    setSearchData({...searchData, [name]: value});
      }
  
      const handleDuration = (e: any) => {
@@ -1148,42 +1147,55 @@ useEffect(() => {
                   </SplideSlide>   
                    ))}
                 </Splide>
+                {result.verified ?
                 <VerifyContainer>
                   <VerifySvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM371.8 211.8C382.7 200.9 382.7 183.1 371.8 172.2C360.9 161.3 343.1 161.3 332.2 172.2L224 280.4L179.8 236.2C168.9 225.3 151.1 225.3 140.2 236.2C129.3 247.1 129.3 264.9 140.2 275.8L204.2 339.8C215.1 350.7 232.9 350.7 243.8 339.8L371.8 211.8z" /></VerifySvg>
-                  <Verify>VERIFIED</Verify>
-                </VerifyContainer>
+                  <Verify>{result.verified.toUpperCase()}</Verify>
+                </VerifyContainer> : '' }
+                {result.video ?
                 <Tooltip title="Video tours are pre-recorded video walk-throughs of the property avaialble at all times" placement="top-start" arrow>
                   <VideoContainer>
                     <Video xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M188.3 147.1C195.8 142.8 205.1 142.1 212.5 147.5L356.5 235.5C363.6 239.9 368 247.6 368 256C368 264.4 363.6 272.1 356.5 276.5L212.5 364.5C205.1 369 195.8 369.2 188.3 364.9C180.7 360.7 176 352.7 176 344V167.1C176 159.3 180.7 151.3 188.3 147.1V147.1zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" /></Video>
                   </VideoContainer>
-                </Tooltip>
+                </Tooltip>: '' }
+                {result.tour ? 
                 <Tooltip title="360 Tours offer you static panoramic view of the property." placement="top-start" arrow>
                   <ImgContainer>
                     <WebImg src='../images/icon-360.svg' />
                   </ImgContainer>
-                </Tooltip>
+                </Tooltip> : '' }
               </CardImg>
-              <CardDetails item lg={6} xs={12} md={6} sm={12}>
-              <StyledLink href={`/detailsPage/${result._id}`}>
+              <CardDetails item lg={6} xs={12} md={6} sm={8}>
+              <StyledLink href={`/buydetailsPage/${result._id}`}>
                   <LeftContainer>
                     <Price>{result?.price?.toLocaleString()} NGN</Price>
-                    <Para>{ result?.propertyTitle}</Para>
+                    <Para>{result?.propertyTitle}</Para>
                     <BedBathContainer>
                       <Apart>{result.propertyType}</Apart>
-                      <Bed><BedBathSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M176 288C220.1 288 256 252.1 256 208S220.1 128 176 128S96 163.9 96 208S131.9 288 176 288zM544 128H304C295.2 128 288 135.2 288 144V320H64V48C64 39.16 56.84 32 48 32h-32C7.163 32 0 39.16 0 48v416C0 472.8 7.163 480 16 480h32C56.84 480 64 472.8 64 464V416h512v48c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V224C640 170.1 597 128 544 128z" /></BedBathSvg>{!result.bedroom && isFetching ? <Skeleton variant="text" sx={{ fontSize: '1rem' , width: '10%' }}/> : result.bedroom}</Bed>
-                      <Bath><BedBathSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M32 384c0 28.32 12.49 53.52 32 71.09V496C64 504.8 71.16 512 80 512h32C120.8 512 128 504.8 128 496v-15.1h256V496c0 8.836 7.164 16 16 16h32c8.836 0 16-7.164 16-16v-40.9c19.51-17.57 32-42.77 32-71.09V352H32V384zM496 256H96V77.25C95.97 66.45 111 60.23 118.6 67.88L132.4 81.66C123.6 108.6 129.4 134.5 144.2 153.2C137.9 159.5 137.8 169.8 144 176l11.31 11.31c6.248 6.248 16.38 6.248 22.63 0l105.4-105.4c6.248-6.248 6.248-16.38 0-22.63l-11.31-11.31c-6.248-6.248-16.38-6.248-22.63 0C230.7 33.26 204.7 27.55 177.7 36.41L163.9 22.64C149.5 8.25 129.6 0 109.3 0C66.66 0 32 34.66 32 77.25v178.8L16 256C7.164 256 0 263.2 0 272v32C0 312.8 7.164 320 16 320h480c8.836 0 16-7.164 16-16v-32C512 263.2 504.8 256 496 256z" /></BedBathSvg>{!result.bathroom && isFetching ? <Skeleton variant="text" sx={{ fontSize: '1rem' , width: '10%' }}/> : result.bathroom}</Bath>
+                      <Bed><BedBathSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M176 288C220.1 288 256 252.1 256 208S220.1 128 176 128S96 163.9 96 208S131.9 288 176 288zM544 128H304C295.2 128 288 135.2 288 144V320H64V48C64 39.16 56.84 32 48 32h-32C7.163 32 0 39.16 0 48v416C0 472.8 7.163 480 16 480h32C56.84 480 64 472.8 64 464V416h512v48c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V224C640 170.1 597 128 544 128z" /></BedBathSvg>{result.bedroom}</Bed>
+                      <Bath><BedBathSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M32 384c0 28.32 12.49 53.52 32 71.09V496C64 504.8 71.16 512 80 512h32C120.8 512 128 504.8 128 496v-15.1h256V496c0 8.836 7.164 16 16 16h32c8.836 0 16-7.164 16-16v-40.9c19.51-17.57 32-42.77 32-71.09V352H32V384zM496 256H96V77.25C95.97 66.45 111 60.23 118.6 67.88L132.4 81.66C123.6 108.6 129.4 134.5 144.2 153.2C137.9 159.5 137.8 169.8 144 176l11.31 11.31c6.248 6.248 16.38 6.248 22.63 0l105.4-105.4c6.248-6.248 6.248-16.38 0-22.63l-11.31-11.31c-6.248-6.248-16.38-6.248-22.63 0C230.7 33.26 204.7 27.55 177.7 36.41L163.9 22.64C149.5 8.25 129.6 0 109.3 0C66.66 0 32 34.66 32 77.25v178.8L16 256C7.164 256 0 263.2 0 272v32C0 312.8 7.164 320 16 320h480c8.836 0 16-7.164 16-16v-32C512 263.2 504.8 256 496 256z" /></BedBathSvg>{result.bathroom}</Bath>
                       <Area>{result?.size?.toLocaleString()} sqft</Area>
                     </BedBathContainer>
                     <DetailContainer>
                       <LocateSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z" /></LocateSvg>
-                      <Detail>{result?.address1}</Detail>
+                      <Detail>{result?.address}</Detail>
                     </DetailContainer>
                   </LeftContainer>
                   </StyledLink>
                   <RightContainer>
-                    <Featured>FEATURED</Featured>
-                    <Premium>PREMIUM</Premium>
-                    <LogoImg src={result.logo} />
+                    {result.featured ?
+                    <Featured>{result.featured.toUpperCase()}</Featured> : '' }
+                    {result.premium ?
+                    <Premium>{result.premium.toUpperCase()}</Premium> : ''}
+                    { result.logo ?
+                    <LogoImg src={result.logo} style={{ marginTop: !result.featured ? '12px' : '-10px' }} /> : ''}
+                    {/* <SaveBtnContainer>
+                    { isSaved ?
+                    <SaveBtn onClick={() => handleDeleteSaveProperty(result)}><FavoriteOutlinedIcon fontSize='large' style={{color: '#008080', cursor: 'pointer'}} /></SaveBtn>
+                    :
+                    <SaveBtn onClick={() => handleSaveProperty(result)}><FavoriteBorderOutlinedIcon fontSize='large' style={{color: '#008080', cursor: 'pointer'}}  /></SaveBtn>
+                   }
+                  </SaveBtnContainer> */}
                   </RightContainer>
                 </CardDetails>
                 <BottomContainer>
