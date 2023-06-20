@@ -62,4 +62,5 @@ export interface PropertyModel {
  data: {}
  result: {} | string
  imagename: [] | {}
+ verified: string
 }
