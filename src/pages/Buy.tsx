@@ -933,20 +933,23 @@ useEffect(() => {
                   </SplideSlide>  
                    ))}
                 </Splide>
+                {result.verified ?
                 <VerifyContainer>
                   <VerifySvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM371.8 211.8C382.7 200.9 382.7 183.1 371.8 172.2C360.9 161.3 343.1 161.3 332.2 172.2L224 280.4L179.8 236.2C168.9 225.3 151.1 225.3 140.2 236.2C129.3 247.1 129.3 264.9 140.2 275.8L204.2 339.8C215.1 350.7 232.9 350.7 243.8 339.8L371.8 211.8z" /></VerifySvg>
-                  <Verify>VERIFIED</Verify>
-                </VerifyContainer>
+                  <Verify>{result.verified.toUpperCase()}</Verify>
+                </VerifyContainer> : '' }
+                {result.video ?
                 <Tooltip title="Video tours are pre-recorded video walk-throughs of the property avaialble at all times" placement="top-start" arrow>
                   <VideoContainer>
                     <Video xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M188.3 147.1C195.8 142.8 205.1 142.1 212.5 147.5L356.5 235.5C363.6 239.9 368 247.6 368 256C368 264.4 363.6 272.1 356.5 276.5L212.5 364.5C205.1 369 195.8 369.2 188.3 364.9C180.7 360.7 176 352.7 176 344V167.1C176 159.3 180.7 151.3 188.3 147.1V147.1zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" /></Video>
                   </VideoContainer>
-                </Tooltip>
+                </Tooltip>: '' }
+                {result.tour ? 
                 <Tooltip title="360 Tours offer you static panoramic view of the property." placement="top-start" arrow>
                   <ImgContainer>
                     <WebImg src='../images/icon-360.svg' />
                   </ImgContainer>
-                </Tooltip>
+                </Tooltip> : '' }
               </CardImg>
               <CardDetails item lg={6} xs={12} md={6} sm={8}>
               <StyledLink href={`/buydetailsPage/${result._id}`}>
@@ -961,21 +964,24 @@ useEffect(() => {
                     </BedBathContainer>
                     <DetailContainer>
                       <LocateSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z" /></LocateSvg>
-                      <Detail>{result?.address1}</Detail>
+                      <Detail>{result?.address}</Detail>
                     </DetailContainer>
                   </LeftContainers>
                   </StyledLink>
                   <RightContainers>
-                    <Featured>FEATURED</Featured>
-                    <Premium>PREMIUM</Premium>
-                    <LogoImg src={result.logo} />
-                    <SaveBtnContainer>
-                    {/* { isSaved ?
+                    {result.featured ?
+                    <Featured>{result.featured.toUpperCase()}</Featured> : '' }
+                    {result.premium ?
+                    <Premium>{result.premium.toUpperCase()}</Premium> : ''}
+                    { result.logo ?
+                    <LogoImg src={result.logo} style={{ marginTop: !result.featured ? '12px' : '-10px' }} /> : ''}
+                    {/* <SaveBtnContainer>
+                    { isSaved ?
                     <SaveBtn onClick={() => handleDeleteSaveProperty(result)}><FavoriteOutlinedIcon fontSize='large' style={{color: '#008080', cursor: 'pointer'}} /></SaveBtn>
                     :
                     <SaveBtn onClick={() => handleSaveProperty(result)}><FavoriteBorderOutlinedIcon fontSize='large' style={{color: '#008080', cursor: 'pointer'}}  /></SaveBtn>
-                   } */}
-                  </SaveBtnContainer>
+                   }
+                  </SaveBtnContainer> */}
                   </RightContainers>
                 </CardDetails>
                 <BottomContainer>
