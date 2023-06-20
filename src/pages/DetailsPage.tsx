@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Footer from '../components/Footer';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { Link, useParams } from "react-router-dom";
-import { useGetPropertyQuery, useMorePropertyQuery } from '../services/api/propertyAPI';
+import { useGetPropertiesQuery, useGetPropertyQuery, useMorePropertyQuery } from '../services/api/propertyAPI';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { selectCurrentPropertyDetail, setPropertyDetail } from '../services/features/propertyDetailSlice';
 import { selectCurrentMoreProperty, setMoreProperty } from '../services/features/morePropertySlice';
@@ -509,6 +509,7 @@ function DetailsPage() {
   const dispatch = useAppDispatch();
   let { propertyId } = useParams();
   const { data} = useGetPropertyQuery(propertyId, {refetchOnMountOrArgChange: true }); 
+  const {data: totalData} = useGetPropertiesQuery();
   const location = more.location
   const price = more.price
   const propertyType = more.propertyType
@@ -701,7 +702,8 @@ function DetailsPage() {
                 <AgentName><strong>{propertyDetail?.name}</strong></AgentName>
                 <AgentWork>Property Consultant at</AgentWork>
                 <AgentCompany>{propertyDetail?.companyName}</AgentCompany>
-                <AgentProperty>(115 properties listed)</AgentProperty>
+                 {/* @ts-ignore:next-line */}
+                <AgentProperty>({totalData?.data?.filter((dat: any) => dat.creator).map((i:any) => i === propertyDetail?.creator).length} properties listed)</AgentProperty>
               </Grid>
             </Grid>
           </Grid>

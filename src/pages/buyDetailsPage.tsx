@@ -7,7 +7,7 @@ import NavBar from '../components/NavBar';
 import Avatar from '@mui/material/Avatar';
 import Footer from '../components/Footer';
 import { useParams } from "react-router-dom";
-import { useGetPropertyQuery, useMorePropertyQuery } from '../services/api/propertyAPI';
+import { useGetPropertiesQuery, useGetPropertyQuery, useMorePropertyQuery } from '../services/api/propertyAPI';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { selectCurrentMoreProperty, setMoreProperty } from '../services/features/morePropertySlice';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
@@ -531,6 +531,7 @@ function BuyDetailsPage() {
   const dispatch = useAppDispatch();
   let { buyPropertyId } = useParams();
   const { data} = useGetPropertyQuery(buyPropertyId); 
+  const {data: totalData} = useGetPropertiesQuery();
   const location = more.location
   const price = more.price
   const propertyType = more.propertyType
@@ -736,7 +737,8 @@ function BuyDetailsPage() {
                 <AgentName><strong>{buyDetail?.name}</strong></AgentName>
                 <AgentWork>Property Consultant at</AgentWork>
                 <AgentCompany>{buyDetail?.companyName}</AgentCompany>
-                <AgentProperty>(115 properties listed)</AgentProperty>
+                 {/* @ts-ignore:next-line */}
+                <AgentProperty>({totalData?.data?.filter((dat: any) => dat.creator).map((i:any) => i === buyDetail?.creator).length} properties listed)</AgentProperty>
               </Grid>
             </Grid>
           </Grid>
