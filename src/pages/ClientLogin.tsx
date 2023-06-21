@@ -14,8 +14,10 @@ import { useAppDispatch } from '../app/hooks';
 import ArrowBackIosNewSharpIcon from '@mui/icons-material/ArrowBackIosNewSharp';
 import { setCompanies } from '../services/features/companySlice';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { Backdrop, CircularProgress, LinearProgress } from '@mui/material';
+import { Alert, Backdrop, CircularProgress, LinearProgress } from '@mui/material';
 import Modal from '@mui/material/Modal';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 
 const StyledBox = styled(Box)`
@@ -200,6 +202,13 @@ const style = {
   pb: 3,
 };
 
+// const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+//   props,
+//   ref,
+// ) {
+//   return <MuiAlert elevation={6} ref={ref} variant="outlined" {...props} />;
+// });
+
 function ClientLogin() {
   
   const [switchForm, setSwitchForm] = useState(false)
@@ -223,8 +232,17 @@ const [errorData, setErrorData] = useState('')
     
      const [signinCompany, { data: data1, isError: isError1, error: error1, isSuccess: isSuccess1, isLoading: loadingAdmin } ] = useSigninCompanyMutation()
      const [signinAgent, { data: data2, isError: isError2, error: error2, isSuccess: isSuccess2, isLoading: loadingAgent } ] = useSigninAgentMutation()//  
-      const [addCompany, {isSuccess: addCompanyIsSuccess, isLoading: loadinADminSignup  }] = useAddCompanyMutation();
+      const [addCompany, {isSuccess: isSuccess3, isLoading: loadinADminSignup, error: error3 }] = useAddCompanyMutation();
     
+      const [openAlert, setOpenAlert] = React.useState(false);
+
+      const handleCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpenAlert(false);
+      };
     //let location = useLocation();
     const dispatch = useAppDispatch()
 
@@ -237,18 +255,21 @@ const [errorData, setErrorData] = useState('')
           if(isSuccess2) {
             dispatch(setAgents({ agent: data2, agentToken: data2?.agentToken }));
             setShowPassword(false);
-            setIsSignup(false);
-            }else {
+            }
+            if (isSuccess1) {
                 dispatch(setCompanies({ company: data1, companyToken: data1?.companyToken}));
               setShowPassword(false);
-              setIsSignup(false);
               };
-        if(isError2) {
-          console.log(error2)
-        } else {
-          console.log(error1)
+        if(error2) {
+          setOpenAlert(true);
+        } 
+        if (error1) {
+          setOpenAlert(true);
         }
-      }, [ isSuccess1, isSuccess2, data1, data2, error1, error2, isError1, isError2, dispatch])
+        if (error3) {
+        setOpenAlert(true);
+        }
+      }, [ isSuccess1, isSuccess2, data1, data2, error1, error2, error3, dispatch])
 
     const clear = () => {
   setAgentFormData(agentInitialState)
@@ -262,49 +283,41 @@ const [errorData, setErrorData] = useState('')
     }
 
     useEffect(() => { 
-     if(addCompanyIsSuccess) {
+     if(isSuccess3) {
       toast.success('Register successfully....')
-      navigate("/client-login");
-      setLogin(false);
       setIsSignup(false);
       clear();
-      } else if(isSuccess1)  {
+      } 
+      if(isSuccess1)  {
         navigate("/adminHomepage");
         toast.success('Login successfully....')
+        setIsSignup(false);
         clear();
-        } else if(isSuccess2) {  
+        } 
+        if(isSuccess2) {  
           toast.success('Login successfully....')
             navigate("/dashboard");
-            setLogin(false);
+            setIsSignup(false);
             clear();
-        } else {
-          navigate("/client-login");
         }
-    }, [addCompanyIsSuccess, isSuccess2, isSuccess1])
+    }, [isSuccess3, isSuccess2, isSuccess1]);
   
       const  handleSubmit = async (e: any) => {
         e.preventDefault();
-       
         if(isSignup) {
-          if(adminFormData.companyName === '' || adminFormData.phone === '' || adminFormData.email === '' || adminFormData.password === '' ) {
-            setErrorData('All fields are required');
-            setErrorSet(true)
-          }else{
-            await addCompany({...adminFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error1: any) => console.error('rejected', error1));
-          }
-         
-         
-        } else {
+            await addCompany({...adminFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error1: any) => console.error('rejected'));
+          } else {
            if(admin === true) {
             setAgent(false);
-            await signinCompany({...loginFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error1: any) => console.error('rejected', error1));
+            await signinCompany({...loginFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error1: any) => console.error('rejected'));
             
           } else {
             setAdmin(false);
-             await signinAgent({...loginFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error2: any) => console.error('rejected', error2));      
+             await signinAgent({...loginFormData}).unwrap().then((payload: any) => console.log('fulfilled')).catch((error2: any) => console.error('rejected'));      
           }
         }
       }
+      
 
       const handleAdmin = () => { 
         setAdmin(true);
@@ -451,6 +464,12 @@ const handleResetPassword = () => {
         <StyledDiv>
          <ForgetPassword onClick={handleResetPassword}>Forget password?</ForgetPassword>
         </StyledDiv>
+      <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+        {/* @ts-ignore:next-line */}
+        <Alert onClose={handleCloseAlert} severity="error" sx={{ width: '100%' }}>{error1?.data?.message ? error1?.data?.message : error2?.data?.message} {}
+          </Alert>
+      </Snackbar>
+      
         {/* </>
           } */}
           </>
@@ -554,7 +573,11 @@ const handleResetPassword = () => {
                                 </>
                                 </Grid>
                             </FormControls> 
-                            <ErrMessage>{errorData}</ErrMessage>
+                            <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+                              {/* @ts-ignore:next-line */}
+        <Alert onClose={handleCloseAlert} severity="error" sx={{ width: '100%' }}>{error3?.data?.message}
+          </Alert>              
+      </Snackbar>
         </>
 }
 {/* </> */}
